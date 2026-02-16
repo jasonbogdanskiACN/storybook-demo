@@ -338,7 +338,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-d7bf0323e6da130e2609e2af0117b4a8d7cd874132206af50bf43dfc37044485fe50f2867ea76525730dd195b9b95a43802a12dadc6ad5cd7bf2faa07f19f0da",
+            "id": "component-ButtonComponent-ca22c085c8b0ff745adc1c67326e2c81e94e711ef865ed1052dd0036a147cb8a37b85b7a9c32c94e623a21497ff3a9af67e4fae6a9b30fcc0a94ca6ec37c725d",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -346,11 +346,9 @@
             "outputs": [],
             "providers": [],
             "selector": "storybook-button",
-            "styleUrls": [
-                "./button.css"
-            ],
+            "styleUrls": [],
             "styles": [],
-            "template": " <button  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>",
+            "template": "<p-button    [label]=\"label\"\n    [severity]=\"severity\"\n    [size]=\"buttonSize\"\n    [rounded]=\"true\"\n    [styleClass]=\"customClass\"\n    (onClick)=\"onClick.emit($event)\"\n  />",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -361,7 +359,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nWhat background color to use",
                     "description": "<p>What background color to use</p>\n",
-                    "line": 25,
+                    "line": 24,
                     "type": "string",
                     "decorators": []
                 },
@@ -372,16 +370,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 760,
-                            "end": 773,
+                            "pos": 742,
+                            "end": 755,
                             "kind": 328,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 761,
-                                "end": 769,
+                                "pos": 743,
+                                "end": 751,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -393,7 +391,7 @@
                     ],
                     "rawdescription": "\n\nButton contents\n\n",
                     "description": "<p>Button contents</p>\n",
-                    "line": 37,
+                    "line": 36,
                     "type": "string",
                     "decorators": []
                 },
@@ -404,7 +402,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nIs this the principal call to action on the page?",
                     "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 21,
+                    "line": 20,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -415,7 +413,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nHow large should the button be?",
                     "description": "<p>How large should the button be?</p>\n",
-                    "line": 29,
+                    "line": 28,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 }
@@ -428,7 +426,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional click handler",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 41,
+                    "line": 40,
                     "type": "EventEmitter"
                 }
             ],
@@ -441,31 +439,44 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
+                    "name": "ButtonModule",
                     "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { ButtonModule } from 'primeng/button';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [ButtonModule],\n  template: `<p-button\n    [label]=\"label\"\n    [severity]=\"severity\"\n    [size]=\"buttonSize\"\n    [rounded]=\"true\"\n    [styleClass]=\"customClass\"\n    (onClick)=\"onClick.emit($event)\"\n  />`,\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get severity(): 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast' | null {\n    return this.primary ? null : 'secondary';\n  }\n\n  public get buttonSize(): 'small' | 'large' | undefined {\n    if (this.size === 'small') return 'small';\n    if (this.size === 'large') return 'large';\n    return undefined;\n  }\n\n  public get customClass(): string {\n    return this.backgroundColor ? 'custom-bg' : '';\n  }\n}\n",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-button {\n  display: inline-block;\n  cursor: pointer;\n  border: 0;\n  border-radius: 3em;\n  font-weight: 700;\n  line-height: 1;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n.storybook-button--primary {\n  background-color: #555ab9;\n  color: white;\n}\n.storybook-button--secondary {\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n  background-color: transparent;\n  color: #333;\n}\n.storybook-button--small {\n  padding: 10px 16px;\n  font-size: 12px;\n}\n.storybook-button--medium {\n  padding: 11px 20px;\n  font-size: 14px;\n}\n.storybook-button--large {\n  padding: 12px 24px;\n  font-size: 16px;\n}\n",
-                    "styleUrl": "./button.css"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
             "accessors": {
-                "classes": {
-                    "name": "classes",
+                "severity": {
+                    "name": "severity",
                     "getSignature": {
-                        "name": "classes",
-                        "type": "[]",
-                        "returnType": "string[]",
-                        "line": 43
+                        "name": "severity",
+                        "type": "unknown",
+                        "returnType": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warn\" | \"danger\" | \"help\" | \"contrast\" | null",
+                        "line": 42
+                    }
+                },
+                "buttonSize": {
+                    "name": "buttonSize",
+                    "getSignature": {
+                        "name": "buttonSize",
+                        "type": "unknown",
+                        "returnType": "\"small\" | \"large\" | undefined",
+                        "line": 46
+                    }
+                },
+                "customClass": {
+                    "name": "customClass",
+                    "getSignature": {
+                        "name": "customClass",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 52
                     }
                 }
             }
@@ -742,7 +753,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes)\r\n  ]\r\n}"
+                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
             },
             {
                 "name": "routes",
@@ -802,7 +813,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes)\r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
                 }
             ],
             "src/app/app.routes.ts": [

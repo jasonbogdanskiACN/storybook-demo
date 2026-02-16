@@ -1,19 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'storybook-button',
   standalone: true,
-  imports: [CommonModule],
-  template: ` <button
-  type="button"
-  (click)="onClick.emit($event)"
-  [ngClass]="classes"
-  [ngStyle]="{ 'background-color': backgroundColor }"
->
-  {{ label }}
-</button>`,
-  styleUrls: ['./button.css'],
+  imports: [ButtonModule],
+  template: `<p-button
+    [label]="label"
+    [severity]="severity"
+    [size]="buttonSize"
+    [rounded]="true"
+    [styleClass]="customClass"
+    (onClick)="onClick.emit($event)"
+  />`,
 })
 export class ButtonComponent {
   /** Is this the principal call to action on the page? */
@@ -40,9 +39,17 @@ export class ButtonComponent {
   @Output()
   onClick = new EventEmitter<Event>();
 
-  public get classes(): string[] {
-    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  public get severity(): 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast' | null {
+    return this.primary ? null : 'secondary';
+  }
 
-    return ['storybook-button', `storybook-button--${this.size}`, mode];
+  public get buttonSize(): 'small' | 'large' | undefined {
+    if (this.size === 'small') return 'small';
+    if (this.size === 'large') return 'large';
+    return undefined;
+  }
+
+  public get customClass(): string {
+    return this.backgroundColor ? 'custom-bg' : '';
   }
 }
