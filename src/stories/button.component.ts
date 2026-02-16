@@ -1,55 +1,59 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+
+type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonSeverity = 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast' | null;
 
 @Component({
   selector: 'storybook-button',
   standalone: true,
   imports: [ButtonModule],
   template: `<p-button
-    [label]="label"
-    [severity]="severity"
-    [size]="buttonSize"
+    [label]="label()"
+    [severity]="severity()"
+    [size]="buttonSize()"
     [rounded]="true"
-    [styleClass]="customClass"
+    [styleClass]="customClass()"
+    [attr.aria-label]="label()"
     (onClick)="onClick.emit($event)"
   />`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   /** Is this the principal call to action on the page? */
-  @Input()
-  primary = false;
+  readonly primary = input<boolean>(false);
 
   /** What background color to use */
-  @Input()
-  backgroundColor?: string;
+  readonly backgroundColor = input<string>();
 
   /** How large should the button be? */
-  @Input()
-  size: 'small' | 'medium' | 'large' = 'medium';
+  readonly size = input<ButtonSize>('medium');
 
   /**
    * Button contents
    *
    * @required
    */
-  @Input()
-  label = 'Button';
+  readonly label = input<string>('Button');
 
   /** Optional click handler */
-  @Output()
-  onClick = new EventEmitter<Event>();
+  readonly onClick = output<Event>();
 
-  public get severity(): 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast' | null {
-    return this.primary ? null : 'secondary';
-  }
+  /** Computed severity based on primary flag */
+  protected readonly severity = computed<ButtonSeverity>(() =>
+    this.primary() ? null : 'secondary'
+  );
 
-  public get buttonSize(): 'small' | 'large' | undefined {
-    if (this.size === 'small') return 'small';
-    if (this.size === 'large') return 'large';
+  /** Computed button size mapped to PrimeNG values */
+  protected readonly buttonSize = computed<'small' | 'large' | undefined>(() => {
+    const currentSize = this.size();
+    if (currentSize === 'small') return 'small';
+    if (currentSize === 'large') return 'large';
     return undefined;
-  }
+  });
 
-  public get customClass(): string {
-    return this.backgroundColor ? 'custom-bg' : '';
-  }
+  /** Computed custom class for background color */
+  protected readonly customClass = computed<string>(() =>
+    this.backgroundColor() ? 'custom-bg' : ''
+  );
 }
