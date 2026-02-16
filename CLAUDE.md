@@ -4,11 +4,129 @@ This file contains instructions for Claude (AI assistant) when working with this
 
 ## Project Overview
 
-This is an Angular 21 application using:
+This is an Angular 21 workspace (monorepo) using:
 - **Angular 21.1.0** - Latest Angular with signals and modern features
-- **PrimeNG 21.1.1** - UI component library with Aura theme
+- **PrimeNG 21.1.1** - UI component library with Aura theme (used in demo app)
 - **Storybook 10.2.8** - Component documentation and development environment
 - **TypeScript 5.9.2** - Strict mode enabled
+
+## Workspace Structure
+
+This workspace contains **two separate Angular projects**:
+
+### 1. UI Components Library (`projects/ui-components/`)
+
+A reusable component library containing:
+- **Button Component** - Customizable button with variants (primary, secondary, danger, success) and sizes
+- **Alert Component** - Alert messages with types (info, success, warning, error) and dismissible option
+- **Card Component** - Card container with title, subtitle, and optional image
+
+All library components follow Angular best practices:
+- Signal-based architecture (input(), output(), signal(), computed())
+- OnPush change detection for optimal performance
+- Modern control flow syntax (@if, @for)
+- Standalone components
+- Full TypeScript type safety
+- Accessibility attributes (ARIA labels)
+- Comprehensive JSDoc documentation
+
+**Component Selectors**: All library components use the `lib-` prefix (e.g., `<lib-button>`, `<lib-alert>`, `<lib-card>`)
+
+### 2. Demo Application (`projects/demo-app/`)
+
+A consumer application that demonstrates the library components. This app:
+- Imports components from the `ui-components` library
+- Shows real-world usage examples
+- Demonstrates all component features and variations
+
+**Purpose**: Serves as both documentation and testing ground for the component library.
+
+## Development Workflows
+
+### Component Library Development (Storybook)
+
+Use Storybook for isolated component development and documentation:
+
+```bash
+npm run storybook
+# Opens Storybook at http://localhost:6006
+# Shows all library components with interactive controls
+# Auto-reloads when you edit component files
+```
+
+**When to use**:
+- Developing or modifying library components
+- Testing component variations and edge cases
+- Viewing auto-generated documentation from JSDoc comments
+
+### Consumer App Development
+
+Use the demo app to test library integration:
+
+```bash
+npm run start:demo
+# Serves demo app at http://localhost:4200
+# Hot-reloads when library components change (no rebuild needed!)
+```
+
+**When to use**:
+- Testing how components work in a real application
+- Verifying component composition and layouts
+- End-to-end testing of component interactions
+
+### Building for Production
+
+```bash
+# Build library only
+npm run build:lib
+# Output: dist/ui-components/
+
+# Build demo app only
+npm run build:demo
+# Output: dist/demo-app/
+
+# Build everything
+npm run build:all
+```
+
+**Note**: The library must be built before the demo app can be built in production mode.
+
+### Running Tests
+
+```bash
+# Test library components
+npm run test:lib
+
+# Test demo app
+npm run test:demo
+
+# Test everything
+npm run test:all
+```
+
+## Importing Library Components
+
+In any Angular application (including the demo app), import components from `ui-components`:
+
+```typescript
+import { ButtonComponent, AlertComponent, CardComponent } from 'ui-components';
+
+@Component({
+  selector: 'app-my-component',
+  standalone: true,
+  imports: [ButtonComponent, AlertComponent, CardComponent],
+  template: `
+    <lib-button label="Click me" variant="primary" />
+    <lib-alert type="success" message="It works!" />
+    <lib-card title="My Card" subtitle="With content">
+      <p>Card body content here</p>
+    </lib-card>
+  `
+})
+export class MyComponent {}
+```
+
+**TypeScript Path Mapping**: The `ui-components` import is resolved via TypeScript path mapping configured in `tsconfig.json`, which points directly to the library source files during development for hot-reload.
 
 ## Angular MCP Integration
 

@@ -3,12 +3,22 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "storybook": "ng run storybook-demo:storybook",
-    "build-storybook": "ng run storybook-demo:build-storybook"
+    "start": "ng serve demo-app",
+    "build": "ng build ui-components",
+    "watch": "ng build ui-components --watch",
+    "test": "ng test ui-components",
+    "build:lib": "ng build ui-components",
+    "build:lib:watch": "ng build ui-components --watch",
+    "test:lib": "ng test ui-components",
+    "start:demo": "ng serve demo-app",
+    "build:demo": "ng build demo-app",
+    "test:demo": "ng test demo-app",
+    "storybook": "ng run ui-components:storybook",
+    "build-storybook": "ng run ui-components:build-storybook",
+    "build:all": "npm run build:lib && npm run build:demo",
+    "test:all": "npm run test:lib && npm run test:demo",
+    "dev": "npm run storybook",
+    "dev:demo": "npm run start:demo"
   },
   "prettier": {
     "printWidth": 100,
@@ -51,6 +61,7 @@
     "@storybook/addon-onboarding": "^10.2.8",
     "@storybook/angular": "^10.2.8",
     "jsdom": "^27.1.0",
+    "ng-packagr": "^21.1.0",
     "storybook": "^10.2.8",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

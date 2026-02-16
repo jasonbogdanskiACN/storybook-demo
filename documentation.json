@@ -1,32 +1,6 @@
 {
     "pipes": [],
-    "interfaces": [
-        {
-            "name": "User",
-            "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
-            "file": "src/stories/user.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "export interface User {\n  name: string;\n}\n",
-            "properties": [
-                {
-                    "name": "name",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 2
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 172,
-            "methods": [],
-            "extends": []
-        }
-    ],
+    "interfaces": [],
     "injectables": [],
     "guards": [],
     "interceptors": [],
@@ -34,15 +8,16 @@
     "directives": [],
     "components": [
         {
-            "name": "Alert",
-            "id": "component-Alert-56afc34b112ab154b6108e5130205f41e9997a80b49fba6f050ed21d6c14875166452a5536454030fb826b29f658d5d9930179bd1e6e569ebebd0d818fea820b",
-            "file": "src/app/components/alert/alert.ts",
+            "name": "AlertComponent",
+            "id": "component-AlertComponent-5bf4c8d1a1170082b9ae45f1444659e9310a23b360851d13475bc75250c6d676996638509b887f8f3f408f91af924179a0bc9af017bbe4071e1ff44d489b362f",
+            "file": "projects/ui-components/src/lib/alert/alert.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-alert",
+            "selector": "lib-alert",
             "styleUrls": [],
             "styles": [],
             "templateUrl": [
@@ -56,59 +31,115 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
                     "type": "boolean",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether the alert can be dismissed by the user</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nWhether the alert can be dismissed by the user",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "message",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Alert message text</p>\n",
+                    "line": 20,
+                    "rawdescription": "\nAlert message text",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "title",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Alert title text</p>\n",
+                    "line": 17,
+                    "rawdescription": "\nAlert title text",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "type",
                     "defaultValue": "'info'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
                     "type": "AlertType",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Alert type determines the color and icon</p>\n",
+                    "line": 14,
+                    "rawdescription": "\nAlert type determines the color and icon",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "outputsClass": [
                 {
                     "name": "onDismiss",
-                    "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
-                    "type": "EventEmitter"
+                    "type": "void",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Emitted when the alert is dismissed</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nEmitted when the alert is dismissed",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "propertiesClass": [
                 {
                     "name": "dismissed",
-                    "defaultValue": "false",
+                    "defaultValue": "signal<boolean>(false)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "unknown",
                     "indexKey": "",
                     "optional": false,
-                    "description": "",
-                    "line": 19
+                    "description": "<p>Internal state tracking if alert has been dismissed</p>\n",
+                    "line": 29,
+                    "rawdescription": "\nInternal state tracking if alert has been dismissed",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "computed<string>(() => {\r\n    const icons: Record<AlertType, string> = {\r\n      info: 'ℹ️',\r\n      success: '✅',\r\n      warning: '⚠️',\r\n      error: '❌'\r\n    };\r\n    return icons[this.type()];\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Computed icon based on alert type</p>\n",
+                    "line": 34,
+                    "rawdescription": "\n\nComputed icon based on alert type\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
                 }
             ],
             "methodsClass": [
@@ -118,112 +149,45 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 48,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nDismiss the alert\n",
+                    "description": "<p>Dismiss the alert</p>\n",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": []
                 }
             ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": false,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                }
-            ],
+            "standalone": true,
+            "imports": [],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nexport type AlertType = 'info' | 'success' | 'warning' | 'error';\r\n\r\n@Component({\r\n  selector: 'app-alert',\r\n  imports: [CommonModule],\r\n  templateUrl: './alert.html',\r\n  styleUrl: './alert.scss',\r\n})\r\nexport class Alert {\r\n  @Input() type: AlertType = 'info';\r\n  @Input() title: string = '';\r\n  @Input() message: string = '';\r\n  @Input() dismissible: boolean = false;\r\n  @Output() onDismiss = new EventEmitter<void>();\r\n\r\n  dismissed = false;\r\n\r\n  dismiss() {\r\n    this.dismissed = true;\r\n    this.onDismiss.emit();\r\n  }\r\n\r\n  get icon(): string {\r\n    const icons = {\r\n      info: 'ℹ️',\r\n      success: '✅',\r\n      warning: '⚠️',\r\n      error: '❌'\r\n    };\r\n    return icons[this.type];\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';\r\n\r\nexport type AlertType = 'info' | 'success' | 'warning' | 'error';\r\n\r\n@Component({\r\n  selector: 'lib-alert',\r\n  standalone: true,\r\n  templateUrl: './alert.html',\r\n  styleUrl: './alert.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AlertComponent {\r\n  /** Alert type determines the color and icon */\r\n  readonly type = input<AlertType>('info');\r\n\r\n  /** Alert title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Alert message text */\r\n  readonly message = input<string>('');\r\n\r\n  /** Whether the alert can be dismissed by the user */\r\n  readonly dismissible = input<boolean>(false);\r\n\r\n  /** Emitted when the alert is dismissed */\r\n  readonly onDismiss = output<void>();\r\n\r\n  /** Internal state tracking if alert has been dismissed */\r\n  protected readonly dismissed = signal<boolean>(false);\r\n\r\n  /**\r\n   * Computed icon based on alert type\r\n   */\r\n  protected readonly icon = computed<string>(() => {\r\n    const icons: Record<AlertType, string> = {\r\n      info: 'ℹ️',\r\n      success: '✅',\r\n      warning: '⚠️',\r\n      error: '❌'\r\n    };\r\n    return icons[this.type()];\r\n  });\r\n\r\n  /**\r\n   * Dismiss the alert\r\n   * @internal\r\n   */\r\n  protected dismiss(): void {\r\n    this.dismissed.set(true);\r\n    this.onDismiss.emit();\r\n  }\r\n}\r\n",
             "styleUrl": "./alert.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "accessors": {
-                "icon": {
-                    "name": "icon",
-                    "getSignature": {
-                        "name": "icon",
-                        "type": "string",
-                        "returnType": "string",
-                        "line": 26
-                    }
-                }
-            },
-            "templateData": "<div *ngIf=\"!dismissed\" [class]=\"'alert alert-' + type\">\r\n  <div class=\"alert-content\">\r\n    <span class=\"alert-icon\">{{ icon }}</span>\r\n    <div class=\"alert-text\">\r\n      <h4 *ngIf=\"title\" class=\"alert-title\">{{ title }}</h4>\r\n      <p class=\"alert-message\">{{ message }}</p>\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n  <button *ngIf=\"dismissible\" class=\"alert-dismiss\" (click)=\"dismiss()\" aria-label=\"Dismiss\">\r\n    ×\r\n  </button>\r\n</div>\r\n"
+            "templateData": "@if (!dismissed()) {\r\n  <div [class]=\"'alert alert-' + type()\">\r\n    <div class=\"alert-content\">\r\n      <span class=\"alert-icon\" aria-label=\"Alert icon\">{{ icon() }}</span>\r\n      <div class=\"alert-text\">\r\n        @if (title()) {\r\n          <h4 class=\"alert-title\">{{ title() }}</h4>\r\n        }\r\n        <p class=\"alert-message\">{{ message() }}</p>\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n    @if (dismissible()) {\r\n      <button class=\"alert-dismiss\" (click)=\"dismiss()\" aria-label=\"Dismiss alert\">\r\n        ×\r\n      </button>\r\n    }\r\n  </div>\r\n}\r\n"
         },
         {
-            "name": "App",
-            "id": "component-App-33f20c5247c598c4169b73892b81a9f4639b6928de483e9e4f50a705dd77f361313364364396151acbea7fe8a1999749805a1ddf41da08d331e7d422993b1567",
-            "file": "src/app/app.ts",
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-496d7491caad0742eb155bd2309215661e405a32dd30a417224a377fe4f568440d3865df805fb98cc16bccb5d585d4bab4036413bc69ea66841879214181d757",
+            "file": "projects/ui-components/src/lib/button/button.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-root",
-            "styleUrls": [],
-            "styles": [],
-            "templateUrl": [
-                "./app.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "title",
-                    "defaultValue": "signal('storybook-demo')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 11,
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                }
-            ],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [
-                {
-                    "name": "RouterOutlet"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  imports: [RouterOutlet],\r\n  templateUrl: './app.html',\r\n  styleUrl: './app.scss'\r\n})\r\nexport class App {\r\n  protected readonly title = signal('storybook-demo');\r\n}\r\n",
-            "styleUrl": "./app.scss",
-            "assetsDirs": [],
-            "styleUrlsData": "",
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    --bright-blue: oklch(51.01% 0.274 263.83);\r\n    --electric-violet: oklch(53.18% 0.28 296.97);\r\n    --french-violet: oklch(47.66% 0.246 305.88);\r\n    --vivid-pink: oklch(69.02% 0.277 332.77);\r\n    --hot-red: oklch(61.42% 0.238 15.34);\r\n    --orange-red: oklch(63.32% 0.24 31.68);\r\n\r\n    --gray-900: oklch(19.37% 0.006 300.98);\r\n    --gray-700: oklch(36.98% 0.014 302.71);\r\n    --gray-400: oklch(70.9% 0.015 304.04);\r\n\r\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\r\n      180deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\r\n      90deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --pill-accent: var(--bright-blue);\r\n\r\n    font-family: \"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 3.125rem;\r\n    color: var(--gray-900);\r\n    font-weight: 500;\r\n    line-height: 100%;\r\n    letter-spacing: -0.125rem;\r\n    margin: 0;\r\n    font-family: \"Inter Tight\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n    color: var(--gray-700);\r\n  }\r\n\r\n  main {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 1rem;\r\n    box-sizing: inherit;\r\n    position: relative;\r\n  }\r\n\r\n  .angular-logo {\r\n    max-width: 9.2rem;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n    max-width: 700px;\r\n    margin-bottom: 3rem;\r\n  }\r\n\r\n  .content h1 {\r\n    margin-top: 1.75rem;\r\n  }\r\n\r\n  .content p {\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .divider {\r\n    width: 1px;\r\n    background: var(--red-to-pink-to-purple-vertical-gradient);\r\n    margin-inline: 0.5rem;\r\n  }\r\n\r\n  .pill-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: start;\r\n    flex-wrap: wrap;\r\n    gap: 1.25rem;\r\n  }\r\n\r\n  .pill {\r\n    display: flex;\r\n    align-items: center;\r\n    --pill-accent: var(--bright-blue);\r\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\r\n    color: var(--pill-accent);\r\n    padding-inline: 0.75rem;\r\n    padding-block: 0.375rem;\r\n    border-radius: 2.75rem;\r\n    border: 0;\r\n    transition: background 0.3s ease;\r\n    font-family: var(--inter-font);\r\n    font-size: 0.875rem;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    line-height: 1.4rem;\r\n    letter-spacing: -0.00875rem;\r\n    text-decoration: none;\r\n    white-space: nowrap;\r\n  }\r\n\r\n  .pill:hover {\r\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 1) {\r\n    --pill-accent: var(--bright-blue);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 2) {\r\n    --pill-accent: var(--electric-violet);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 3) {\r\n    --pill-accent: var(--french-violet);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 4),\r\n  .pill-group .pill:nth-child(6n + 5),\r\n  .pill-group .pill:nth-child(6n + 6) {\r\n    --pill-accent: var(--hot-red);\r\n  }\r\n\r\n  .pill-group svg {\r\n    margin-inline-start: 0.25rem;\r\n  }\r\n\r\n  .social-links {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.73rem;\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .social-links path {\r\n    transition: fill 0.3s ease;\r\n    fill: var(--gray-400);\r\n  }\r\n\r\n  .social-links a:hover svg path {\r\n    fill: var(--gray-900);\r\n  }\r\n\r\n  @media screen and (max-width: 650px) {\r\n    .content {\r\n      flex-direction: column;\r\n      width: max-content;\r\n    }\r\n\r\n    .divider {\r\n      height: 1px;\r\n      width: 100%;\r\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\r\n      margin-block: 1.5rem;\r\n    }\r\n  }\r\n</style>\r\n\r\n<main class=\"main\">\r\n  <div class=\"content\">\r\n    <div class=\"left-side\">\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        viewBox=\"0 0 982 239\"\r\n        fill=\"none\"\r\n        class=\"angular-logo\"\r\n      >\r\n        <g clip-path=\"url(#a)\">\r\n          <path\r\n            fill=\"url(#b)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n          <path\r\n            fill=\"url(#c)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n        </g>\r\n        <defs>\r\n          <radialGradient\r\n            id=\"c\"\r\n            cx=\"0\"\r\n            cy=\"0\"\r\n            r=\"1\"\r\n            gradientTransform=\"rotate(118.122 171.182 60.81) scale(205.794)\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#FF41F8\" />\r\n            <stop offset=\".707\" stop-color=\"#FF41F8\" stop-opacity=\".5\" />\r\n            <stop offset=\"1\" stop-color=\"#FF41F8\" stop-opacity=\"0\" />\r\n          </radialGradient>\r\n          <linearGradient\r\n            id=\"b\"\r\n            x1=\"0\"\r\n            x2=\"982\"\r\n            y1=\"192\"\r\n            y2=\"192\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#F0060B\" />\r\n            <stop offset=\"0\" stop-color=\"#F0070C\" />\r\n            <stop offset=\".526\" stop-color=\"#CC26D5\" />\r\n            <stop offset=\"1\" stop-color=\"#7702FF\" />\r\n          </linearGradient>\r\n          <clipPath id=\"a\"><path fill=\"#fff\" d=\"M0 0h982v239H0z\" /></clipPath>\r\n        </defs>\r\n      </svg>\r\n      <h1>Hello, {{ title() }}</h1>\r\n      <p>Congratulations! Your app is running. 🎉</p>\r\n    </div>\r\n    <div class=\"divider\" role=\"separator\" aria-label=\"Divider\"></div>\r\n    <div class=\"right-side\">\r\n      <div class=\"pill-group\">\r\n        @for (item of [\r\n          { title: 'Explore the Docs', link: 'https://angular.dev' },\r\n          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },\r\n          { title: 'Prompt and best practices for AI', link: 'https://angular.dev/ai/develop-with-ai'},\r\n          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },\r\n          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },\r\n          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },\r\n        ]; track item.title) {\r\n          <a\r\n            class=\"pill\"\r\n            [href]=\"item.link\"\r\n            target=\"_blank\"\r\n            rel=\"noopener\"\r\n          >\r\n            <span>{{ item.title }}</span>\r\n            <svg\r\n              xmlns=\"http://www.w3.org/2000/svg\"\r\n              height=\"14\"\r\n              viewBox=\"0 -960 960 960\"\r\n              width=\"14\"\r\n              fill=\"currentColor\"\r\n            >\r\n              <path\r\n                d=\"M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z\"\r\n              />\r\n            </svg>\r\n          </a>\r\n        }\r\n      </div>\r\n      <div class=\"social-links\">\r\n        <a\r\n          href=\"https://github.com/angular/angular\"\r\n          aria-label=\"Github\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"25\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 25 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Github\"\r\n          >\r\n            <path\r\n              d=\"M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://x.com/angular\"\r\n          aria-label=\"X\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"24\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 24 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"X\"\r\n          >\r\n            <path\r\n              d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw\"\r\n          aria-label=\"Youtube\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"29\"\r\n            height=\"20\"\r\n            viewBox=\"0 0 29 20\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Youtube\"\r\n          >\r\n            <path\r\n              fill-rule=\"evenodd\"\r\n              clip-rule=\"evenodd\"\r\n              d=\"M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</main>\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n\r\n<router-outlet />\r\n"
-        },
-        {
-            "name": "Button",
-            "id": "component-Button-b2a69b478260dc561452a043ec26767bcebaa34a7a12bd2580ff5569204f5600766256de37f7ab421e2283f56d81f2ed5f1d84c1f9fc991728e3951cf1529bbe",
-            "file": "src/app/components/button/button.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-button",
+            "selector": "lib-button",
             "styleUrls": [],
             "styles": [],
             "templateUrl": [
@@ -237,46 +201,81 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
                     "type": "boolean",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether button is disabled</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nWhether button is disabled",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "label",
                     "defaultValue": "'Button'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button text label</p>\n",
+                    "line": 15,
+                    "rawdescription": "\nButton text label",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "size",
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
                     "type": "ButtonSize",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button size</p>\n",
+                    "line": 21,
+                    "rawdescription": "\nButton size",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "variant",
                     "defaultValue": "'primary'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
                     "type": "ButtonVariant",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button visual variant</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nButton visual variant",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "outputsClass": [
                 {
                     "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
-                    "type": "EventEmitter"
+                    "type": "Event",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Emitted when button is clicked</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nEmitted when button is clicked",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "propertiesClass": [],
@@ -296,20 +295,40 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "rawdescription": "\n\nHandle button click event\n",
+                    "description": "<p>Handle button click event</p>\n",
+                    "modifierKind": [
+                        124
+                    ],
                     "jsdoctags": [
                         {
-                            "name": "event",
+                            "name": {
+                                "pos": 888,
+                                "end": 893,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "event"
+                            },
                             "type": "Event",
                             "optional": false,
                             "dotDotDotToken": false,
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "text": "param"
-                            }
+                                "pos": 882,
+                                "end": 887,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>The click event</li>\n</ul>\n"
                         }
                     ]
                 }
@@ -318,225 +337,30 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": false,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                }
-            ],
+            "standalone": true,
+            "imports": [],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nexport type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';\r\nexport type ButtonSize = 'small' | 'medium' | 'large';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  imports: [CommonModule],\r\n  templateUrl: './button.html',\r\n  styleUrl: './button.scss',\r\n})\r\nexport class Button {\r\n  @Input() label: string = 'Button';\r\n  @Input() variant: ButtonVariant = 'primary';\r\n  @Input() size: ButtonSize = 'medium';\r\n  @Input() disabled: boolean = false;\r\n  @Output() onClick = new EventEmitter<Event>();\r\n\r\n  handleClick(event: Event) {\r\n    if (!this.disabled) {\r\n      this.onClick.emit(event);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';\r\n\r\nexport type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';\r\nexport type ButtonSize = 'small' | 'medium' | 'large';\r\n\r\n@Component({\r\n  selector: 'lib-button',\r\n  standalone: true,\r\n  templateUrl: './button.html',\r\n  styleUrl: './button.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class ButtonComponent {\r\n  /** Button text label */\r\n  readonly label = input<string>('Button');\r\n\r\n  /** Button visual variant */\r\n  readonly variant = input<ButtonVariant>('primary');\r\n\r\n  /** Button size */\r\n  readonly size = input<ButtonSize>('medium');\r\n\r\n  /** Whether button is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Emitted when button is clicked */\r\n  readonly onClick = output<Event>();\r\n\r\n  /**\r\n   * Handle button click event\r\n   * @param event - The click event\r\n   * @internal\r\n   */\r\n  protected handleClick(event: Event): void {\r\n    if (!this.disabled()) {\r\n      this.onClick.emit(event);\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./button.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<button\r\n  [class]=\"'btn btn-' + variant + ' btn-' + size\"\r\n  [disabled]=\"disabled\"\r\n  (click)=\"handleClick($event)\"\r\n>\r\n  {{ label }}\r\n</button>\r\n"
+            "templateData": "<button\r\n  [class]=\"'btn btn-' + variant() + ' btn-' + size()\"\r\n  [disabled]=\"disabled()\"\r\n  [attr.aria-label]=\"label()\"\r\n  (click)=\"handleClick($event)\"\r\n>\r\n  {{ label() }}\r\n</button>\r\n"
         },
         {
-            "name": "ButtonComponent",
-            "id": "component-ButtonComponent-3a87a6d91dcf1743c2d26db2418e188111b7da2a142cae5994f4f3d1722d6613dfa4ad682438e167ffa756291caf214b3401f17de1811d5fa6e82f65d0f24ec1",
-            "file": "src/stories/button.component.ts",
+            "name": "CardComponent",
+            "id": "component-CardComponent-cf8b7cddbc6fc840d925890fa957f3adee97558bc9a60f2ee2bafc22db1e8f07a8e291a96c5519496e4e2a5571ed7590fc73f62f82ae319e16e5aa57b7dc24ed",
+            "file": "projects/ui-components/src/lib/card/card.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-button",
-            "styleUrls": [],
-            "styles": [],
-            "template": "<p-button    [label]=\"label()\"\n    [severity]=\"severity()\"\n    [size]=\"buttonSize()\"\n    [rounded]=\"true\"\n    [styleClass]=\"customClass()\"\n    [attr.aria-label]=\"label()\"\n    (onClick)=\"onClick.emit($event)\"\n  />",
-            "templateUrl": [],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 27,
-                    "rawdescription": "\nWhat background color to use",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                },
-                {
-                    "name": "label",
-                    "defaultValue": "'Button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Button contents</p>\n",
-                    "line": 37,
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "modifierKind": [
-                        148
-                    ],
-                    "jsdoctags": [
-                        {
-                            "pos": 1028,
-                            "end": 1041,
-                            "kind": 328,
-                            "id": 0,
-                            "flags": 16842752,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "tagName": {
-                                "pos": 1029,
-                                "end": 1037,
-                                "kind": 80,
-                                "id": 0,
-                                "flags": 16842752,
-                                "transformFlags": 0,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "required": false
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 24,
-                    "rawdescription": "\nIs this the principal call to action on the page?",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "'medium'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ButtonSize",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 30,
-                    "rawdescription": "\nHow large should the button be?",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Event",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 40,
-                    "rawdescription": "\nOptional click handler",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "buttonSize",
-                    "defaultValue": "computed<'small' | 'large' | undefined>(() => {\n    const currentSize = this.size();\n    if (currentSize === 'small') return 'small';\n    if (currentSize === 'large') return 'large';\n    return undefined;\n  })",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Computed button size mapped to PrimeNG values</p>\n",
-                    "line": 48,
-                    "rawdescription": "\nComputed button size mapped to PrimeNG values",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                },
-                {
-                    "name": "customClass",
-                    "defaultValue": "computed<string>(() =>\n    this.backgroundColor() ? 'custom-bg' : ''\n  )",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Computed custom class for background color</p>\n",
-                    "line": 56,
-                    "rawdescription": "\nComputed custom class for background color",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                },
-                {
-                    "name": "severity",
-                    "defaultValue": "computed<ButtonSeverity>(() =>\n    this.primary() ? null : 'secondary'\n  )",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Computed severity based on primary flag</p>\n",
-                    "line": 43,
-                    "rawdescription": "\nComputed severity based on primary flag",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                }
-            ],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "ButtonModule",
-                    "type": "module"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';\nimport { ButtonModule } from 'primeng/button';\n\ntype ButtonSize = 'small' | 'medium' | 'large';\ntype ButtonSeverity = 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast' | null;\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [ButtonModule],\n  template: `<p-button\n    [label]=\"label()\"\n    [severity]=\"severity()\"\n    [size]=\"buttonSize()\"\n    [rounded]=\"true\"\n    [styleClass]=\"customClass()\"\n    [attr.aria-label]=\"label()\"\n    (onClick)=\"onClick.emit($event)\"\n  />`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  readonly primary = input<boolean>(false);\n\n  /** What background color to use */\n  readonly backgroundColor = input<string>();\n\n  /** How large should the button be? */\n  readonly size = input<ButtonSize>('medium');\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  readonly label = input<string>('Button');\n\n  /** Optional click handler */\n  readonly onClick = output<Event>();\n\n  /** Computed severity based on primary flag */\n  protected readonly severity = computed<ButtonSeverity>(() =>\n    this.primary() ? null : 'secondary'\n  );\n\n  /** Computed button size mapped to PrimeNG values */\n  protected readonly buttonSize = computed<'small' | 'large' | undefined>(() => {\n    const currentSize = this.size();\n    if (currentSize === 'small') return 'small';\n    if (currentSize === 'large') return 'large';\n    return undefined;\n  });\n\n  /** Computed custom class for background color */\n  protected readonly customClass = computed<string>(() =>\n    this.backgroundColor() ? 'custom-bg' : ''\n  );\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": "",
-            "stylesData": "",
-            "extends": []
-        },
-        {
-            "name": "Card",
-            "id": "component-Card-264b36d56a2c5fe872c3ea1f56c42a9e02e2bd171b6a78822ca97ac6c292b5f1e582054ccc881a8e8b731eea62980c4ad5e943c7fcc3a745ee86e50aae0af65e",
-            "file": "src/app/components/card/card.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-card",
+            "selector": "lib-card",
             "styleUrls": [],
             "styles": [],
             "templateUrl": [
@@ -550,36 +374,64 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
                     "type": "boolean",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether the card should have an elevated appearance</p>\n",
+                    "line": 21,
+                    "rawdescription": "\nWhether the card should have an elevated appearance",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "imageUrl",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>URL for the card image</p>\n",
+                    "line": 18,
+                    "rawdescription": "\nURL for the card image",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "subtitle",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Card subtitle text</p>\n",
+                    "line": 15,
+                    "rawdescription": "\nCard subtitle text",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 },
                 {
                     "name": "title",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
                     "type": "string",
-                    "decorators": []
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Card title text</p>\n",
+                    "line": 12,
+                    "rawdescription": "\nCard title text",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
                 }
             ],
             "outputsClass": [],
@@ -589,269 +441,232 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": false,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                }
-            ],
+            "standalone": true,
+            "imports": [],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-card',\r\n  imports: [CommonModule],\r\n  templateUrl: './card.html',\r\n  styleUrl: './card.scss',\r\n})\r\nexport class Card {\r\n  @Input() title: string = '';\r\n  @Input() subtitle: string = '';\r\n  @Input() imageUrl: string = '';\r\n  @Input() elevated: boolean = false;\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'lib-card',\r\n  standalone: true,\r\n  templateUrl: './card.html',\r\n  styleUrl: './card.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class CardComponent {\r\n  /** Card title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Card subtitle text */\r\n  readonly subtitle = input<string>('');\r\n\r\n  /** URL for the card image */\r\n  readonly imageUrl = input<string>('');\r\n\r\n  /** Whether the card should have an elevated appearance */\r\n  readonly elevated = input<boolean>(false);\r\n}\r\n",
             "styleUrl": "./card.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div [class]=\"'card ' + (elevated ? 'card-elevated' : '')\">\r\n  <img *ngIf=\"imageUrl\" [src]=\"imageUrl\" alt=\"\" class=\"card-image\" />\r\n  <div class=\"card-content\">\r\n    <h3 *ngIf=\"title\" class=\"card-title\">{{ title }}</h3>\r\n    <p *ngIf=\"subtitle\" class=\"card-subtitle\">{{ subtitle }}</p>\r\n    <div class=\"card-body\">\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
-        },
-        {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-74bfa54bbff73b04095051da1836c307867f50ada2ae97b716af70368364467065db89d0bc77c679f5e63a29f682171212608ed04436b1a742ca75d71d28e680",
-            "file": "src/stories/header.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-header",
-            "styleUrls": [
-                "./header.css"
-            ],
-            "styles": [],
-            "template": "<header>    <div class=\"storybook-header\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Acme Logo\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <nav aria-label=\"User navigation\">\n        @if (user()) {\n          <div>\n            <span class=\"welcome\">\n              Welcome, <b>{{ user()!.name }}</b>!\n            </span>\n            <storybook-button\n              size=\"small\"\n              (onClick)=\"onLogout.emit($event)\"\n              label=\"Log out\"\n              aria-label=\"Log out from your account\"\n            />\n          </div>\n        } @else {\n          <div>\n            <storybook-button\n              size=\"small\"\n              class=\"margin-left\"\n              (onClick)=\"onLogin.emit($event)\"\n              label=\"Log in\"\n              aria-label=\"Log in to your account\"\n            />\n            <storybook-button\n              size=\"small\"\n              [primary]=\"true\"\n              class=\"margin-left\"\n              (onClick)=\"onCreateAccount.emit($event)\"\n              label=\"Sign up\"\n              aria-label=\"Create a new account\"\n            />\n          </div>\n        }\n      </nav>\n    </div>\n  </header>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "User | null",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Current logged-in user</p>\n",
-                    "line": 68,
-                    "rawdescription": "\nCurrent logged-in user",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onCreateAccount",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Event",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Emitted when user clicks create account button</p>\n",
-                    "line": 77,
-                    "rawdescription": "\nEmitted when user clicks create account button",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                },
-                {
-                    "name": "onLogin",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Event",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Emitted when user clicks login button</p>\n",
-                    "line": 71,
-                    "rawdescription": "\nEmitted when user clicks login button",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                },
-                {
-                    "name": "onLogout",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Event",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Emitted when user clicks logout button</p>\n",
-                    "line": 74,
-                    "rawdescription": "\nEmitted when user clicks logout button",
-                    "modifierKind": [
-                        148
-                    ],
-                    "required": false
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "ButtonComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  template: `<header>\n    <div class=\"storybook-header\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Acme Logo\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <nav aria-label=\"User navigation\">\n        @if (user()) {\n          <div>\n            <span class=\"welcome\">\n              Welcome, <b>{{ user()!.name }}</b>!\n            </span>\n            <storybook-button\n              size=\"small\"\n              (onClick)=\"onLogout.emit($event)\"\n              label=\"Log out\"\n              aria-label=\"Log out from your account\"\n            />\n          </div>\n        } @else {\n          <div>\n            <storybook-button\n              size=\"small\"\n              class=\"margin-left\"\n              (onClick)=\"onLogin.emit($event)\"\n              label=\"Log in\"\n              aria-label=\"Log in to your account\"\n            />\n            <storybook-button\n              size=\"small\"\n              [primary]=\"true\"\n              class=\"margin-left\"\n              (onClick)=\"onCreateAccount.emit($event)\"\n              label=\"Sign up\"\n              aria-label=\"Create a new account\"\n            />\n          </div>\n        }\n      </nav>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class HeaderComponent {\n  /** Current logged-in user */\n  readonly user = input<User | null>(null);\n\n  /** Emitted when user clicks login button */\n  readonly onLogin = output<Event>();\n\n  /** Emitted when user clicks logout button */\n  readonly onLogout = output<Event>();\n\n  /** Emitted when user clicks create account button */\n  readonly onCreateAccount = output<Event>();\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-header svg {\n  display: inline-block;\n  vertical-align: top;\n}\n\n.storybook-header h1 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 6px 0 6px 10px;\n  font-weight: 700;\n  font-size: 20px;\n  line-height: 1;\n}\n\n.storybook-header button + button {\n  margin-left: 10px;\n}\n\n.storybook-header .welcome {\n  margin-right: 10px;\n  color: #333;\n  font-size: 14px;\n}\n",
-                    "styleUrl": "./header.css"
-                }
-            ],
-            "stylesData": "",
-            "extends": []
-        },
-        {
-            "name": "PageComponent",
-            "id": "component-PageComponent-36de4465136c6c868b41066540bd9a111daff7e59e66aac385cd8d54a3a1eb72c90e09cfaf5852082de17fc46c70368887904675a8d78a5d63c065f79456a5b6",
-            "file": "src/stories/page.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-page",
-            "styleUrls": [
-                "./page.css"
-            ],
-            "styles": [],
-            "template": "<article>    <storybook-header\n      [user]=\"user()\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    />\n    <section class=\"storybook-page\">\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "signal<User | null>(null)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "unknown",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "<p>Current user state managed with signals</p>\n",
-                    "line": 70,
-                    "rawdescription": "\nCurrent user state managed with signals",
-                    "modifierKind": [
-                        124,
-                        148
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "doCreateAccount",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 83,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nHandle account creation - sets mock user data",
-                    "description": "<p>Handle account creation - sets mock user data</p>\n",
-                    "modifierKind": [
-                        124
-                    ]
-                },
-                {
-                    "name": "doLogin",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 78,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nHandle user login - sets mock user data",
-                    "description": "<p>Handle user login - sets mock user data</p>\n",
-                    "modifierKind": [
-                        124
-                    ]
-                },
-                {
-                    "name": "doLogout",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 73,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nHandle user logout - clears user state",
-                    "description": "<p>Handle user logout - clears user state</p>\n",
-                    "modifierKind": [
-                        124
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "HeaderComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, signal } from '@angular/core';\n\nimport { HeaderComponent } from './header.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-page',\n  standalone: true,\n  imports: [HeaderComponent],\n  template: `<article>\n    <storybook-header\n      [user]=\"user()\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    />\n    <section class=\"storybook-page\">\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PageComponent {\n  /** Current user state managed with signals */\n  protected readonly user = signal<User | null>(null);\n\n  /** Handle user logout - clears user state */\n  protected doLogout(): void {\n    this.user.set(null);\n  }\n\n  /** Handle user login - sets mock user data */\n  protected doLogin(): void {\n    this.user.set({ name: 'Jane Doe' });\n  }\n\n  /** Handle account creation - sets mock user data */\n  protected doCreateAccount(): void {\n    this.user.set({ name: 'Jane Doe' });\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-page {\n  margin: 0 auto;\n  padding: 48px 20px;\n  max-width: 600px;\n  color: #333;\n  font-size: 14px;\n  line-height: 24px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-page h2 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 0 0 4px;\n  font-weight: 700;\n  font-size: 32px;\n  line-height: 1;\n}\n\n.storybook-page p {\n  margin: 1em 0;\n}\n\n.storybook-page a {\n  color: inherit;\n}\n\n.storybook-page ul {\n  margin: 1em 0;\n  padding-left: 30px;\n}\n\n.storybook-page li {\n  margin-bottom: 8px;\n}\n\n.storybook-page .tip {\n  display: inline-block;\n  vertical-align: top;\n  margin-right: 10px;\n  border-radius: 1em;\n  background: #e7fdd8;\n  padding: 4px 12px;\n  color: #357a14;\n  font-weight: 700;\n  font-size: 11px;\n  line-height: 12px;\n}\n\n.storybook-page .tip-wrapper {\n  margin-top: 40px;\n  margin-bottom: 40px;\n  font-size: 13px;\n  line-height: 20px;\n}\n\n.storybook-page .tip-wrapper svg {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 3px;\n  margin-right: 4px;\n  width: 12px;\n  height: 12px;\n}\n\n.storybook-page .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-                    "styleUrl": "./page.css"
-                }
-            ],
-            "stylesData": "",
-            "extends": []
+            "templateData": "<div [class]=\"'card ' + (elevated() ? 'card-elevated' : '')\">\r\n  @if (imageUrl()) {\r\n    <img [src]=\"imageUrl()\" [alt]=\"title() || 'Card image'\" class=\"card-image\" />\r\n  }\r\n  <div class=\"card-content\">\r\n    @if (title()) {\r\n      <h3 class=\"card-title\">{{ title() }}</h3>\r\n    }\r\n    @if (subtitle()) {\r\n      <p class=\"card-subtitle\">{{ subtitle() }}</p>\r\n    }\r\n    <div class=\"card-body\">\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         }
     ],
     "modules": [],
     "miscellaneous": {
         "variables": [
             {
-                "name": "appConfig",
+                "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/app.config.ts",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    title: 'Card Title',\n    subtitle: 'This is a subtitle',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This is the card content. You can put any content here.</p>\n      </app-card>\n    `,\n  }),\n}"
             },
             {
-                "name": "routes",
+                "name": "Danger",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/app.routes.ts",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Routes",
-                "defaultValue": "[]"
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Danger Button',\n    variant: 'danger',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: true,\n  },\n}"
+            },
+            {
+                "name": "Dismissible",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Dismissible Alert',\n    message: 'Click the × button to dismiss this alert.',\n    dismissible: true,\n  },\n}"
+            },
+            {
+                "name": "Elevated",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    title: 'Elevated Card',\n    subtitle: 'With shadow and hover effect',\n    elevated: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This card has an elevated style with shadow and hover effects.</p>\n        <p>Try hovering over it!</p>\n      </app-card>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "Error",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'error',\n    title: 'Error',\n    message: 'Something went wrong. Please try again.',\n    dismissible: false,\n  },\n}"
+            },
+            {
+                "name": "Info",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Information',\n    message: 'This is an informational alert message.',\n    dismissible: false,\n  },\n}"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Large Button',\n    variant: 'primary',\n    size: 'large',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<Alert>",
+                "defaultValue": "{\n  title: 'Components/Alert',\n  component: Alert,\n  tags: ['autodocs'],\n  argTypes: {\n    type: {\n      control: 'select',\n      options: ['info', 'success', 'warning', 'error'],\n    },\n    dismissible: {\n      control: 'boolean',\n    },\n    onDismiss: { action: 'dismissed' },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<Card>",
+                "defaultValue": "{\n  title: 'Components/Card',\n  component: Card,\n  tags: ['autodocs'],\n  argTypes: {\n    elevated: {\n      control: 'boolean',\n    },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<Button>",
+                "defaultValue": "{\n  title: 'Components/Button',\n  component: Button,\n  tags: ['autodocs'],\n  argTypes: {\n    variant: {\n      control: 'select',\n      options: ['primary', 'secondary', 'danger', 'success'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    disabled: {\n      control: 'boolean',\n    },\n    onClick: { action: 'clicked' },\n  },\n}"
+            },
+            {
+                "name": "NoTitle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'success',\n    message: 'This alert has no title, just a message.',\n    dismissible: false,\n  },\n}"
+            },
+            {
+                "name": "NoTitle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [elevated]=\"elevated\">\n        <h3>Custom Content</h3>\n        <p>You can use a card without a title and create your own layout.</p>\n        <button style=\"padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer;\">\n          Action\n        </button>\n      </app-card>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Primary Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Secondary Button',\n    variant: 'secondary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Small Button',\n    variant: 'primary',\n    size: 'small',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "Success",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'success',\n    title: 'Success!',\n    message: 'Your operation completed successfully.',\n    dismissible: false,\n  },\n}"
+            },
+            {
+                "name": "Success",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Success Button',\n    variant: 'success',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+            },
+            {
+                "name": "Warning",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Warning',\n    message: 'Please review this important information.',\n    dismissible: false,\n  },\n}"
+            },
+            {
+                "name": "WithCustomContent",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Custom Content',\n    message: '',\n    dismissible: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-alert [type]=\"type\" [title]=\"title\" [dismissible]=\"dismissible\">\n        <p style=\"margin: 0;\">This alert contains custom HTML content instead of a simple message.</p>\n        <ul style=\"margin: 0.5rem 0 0 0; padding-left: 1.5rem;\">\n          <li>You can add lists</li>\n          <li>Or any other HTML elements</li>\n          <li>Inside the alert</li>\n        </ul>\n      </app-alert>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "WithImage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    title: 'Beautiful Landscape',\n    subtitle: 'A stunning view',\n    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [imageUrl]=\"imageUrl\" [elevated]=\"elevated\">\n        <p>This card includes a beautiful header image.</p>\n      </app-card>\n    `,\n  }),\n}"
             }
         ],
         "functions": [],
@@ -861,18 +676,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"info\" | \"success\" | \"warning\" | \"error\"",
-                "file": "src/app/components/alert/alert.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 193
-            },
-            {
-                "name": "ButtonSeverity",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warn\" | \"danger\" | \"help\" | \"contrast\" | null",
-                "file": "src/stories/button.component.ts",
+                "file": "projects/ui-components/src/lib/alert/alert.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -883,18 +687,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"small\" | \"medium\" | \"large\"",
-                "file": "src/stories/button.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 193
-            },
-            {
-                "name": "ButtonSize",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"small\" | \"medium\" | \"large\"",
-                "file": "src/app/components/button/button.ts",
+                "file": "projects/ui-components/src/lib/button/button.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -905,87 +698,288 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"primary\" | \"secondary\" | \"danger\" | \"success\"",
-                "file": "src/app/components/button/button.ts",
+                "file": "projects/ui-components/src/lib/button/button.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 193
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<Alert>",
+                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<Card>",
+                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<Button>",
+                "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
             }
         ],
         "enumerations": [],
         "groupedVariables": {
-            "src/app/app.config.ts": [
+            "projects/ui-components/src/lib/card/card.stories.ts": [
                 {
-                    "name": "appConfig",
+                    "name": "Basic",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/app.config.ts",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideRouter(routes),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    title: 'Card Title',\n    subtitle: 'This is a subtitle',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This is the card content. You can put any content here.</p>\n      </app-card>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "Elevated",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    title: 'Elevated Card',\n    subtitle: 'With shadow and hover effect',\n    elevated: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This card has an elevated style with shadow and hover effects.</p>\n        <p>Try hovering over it!</p>\n      </app-card>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<Card>",
+                    "defaultValue": "{\n  title: 'Components/Card',\n  component: Card,\n  tags: ['autodocs'],\n  argTypes: {\n    elevated: {\n      control: 'boolean',\n    },\n  },\n}"
+                },
+                {
+                    "name": "NoTitle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [elevated]=\"elevated\">\n        <h3>Custom Content</h3>\n        <p>You can use a card without a title and create your own layout.</p>\n        <button style=\"padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer;\">\n          Action\n        </button>\n      </app-card>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "WithImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    title: 'Beautiful Landscape',\n    subtitle: 'A stunning view',\n    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [imageUrl]=\"imageUrl\" [elevated]=\"elevated\">\n        <p>This card includes a beautiful header image.</p>\n      </app-card>\n    `,\n  }),\n}"
                 }
             ],
-            "src/app/app.routes.ts": [
+            "projects/ui-components/src/lib/button/button.stories.ts": [
                 {
-                    "name": "routes",
+                    "name": "Danger",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/app.routes.ts",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Routes",
-                    "defaultValue": "[]"
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Danger Button',\n    variant: 'danger',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: true,\n  },\n}"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Large Button',\n    variant: 'primary',\n    size: 'large',\n    disabled: false,\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<Button>",
+                    "defaultValue": "{\n  title: 'Components/Button',\n  component: Button,\n  tags: ['autodocs'],\n  argTypes: {\n    variant: {\n      control: 'select',\n      options: ['primary', 'secondary', 'danger', 'success'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    disabled: {\n      control: 'boolean',\n    },\n    onClick: { action: 'clicked' },\n  },\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Primary Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Secondary Button',\n    variant: 'secondary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Small Button',\n    variant: 'primary',\n    size: 'small',\n    disabled: false,\n  },\n}"
+                },
+                {
+                    "name": "Success",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Success Button',\n    variant: 'success',\n    size: 'medium',\n    disabled: false,\n  },\n}"
+                }
+            ],
+            "projects/ui-components/src/lib/alert/alert.stories.ts": [
+                {
+                    "name": "Dismissible",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Dismissible Alert',\n    message: 'Click the × button to dismiss this alert.',\n    dismissible: true,\n  },\n}"
+                },
+                {
+                    "name": "Error",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'error',\n    title: 'Error',\n    message: 'Something went wrong. Please try again.',\n    dismissible: false,\n  },\n}"
+                },
+                {
+                    "name": "Info",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Information',\n    message: 'This is an informational alert message.',\n    dismissible: false,\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<Alert>",
+                    "defaultValue": "{\n  title: 'Components/Alert',\n  component: Alert,\n  tags: ['autodocs'],\n  argTypes: {\n    type: {\n      control: 'select',\n      options: ['info', 'success', 'warning', 'error'],\n    },\n    dismissible: {\n      control: 'boolean',\n    },\n    onDismiss: { action: 'dismissed' },\n  },\n}"
+                },
+                {
+                    "name": "NoTitle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'success',\n    message: 'This alert has no title, just a message.',\n    dismissible: false,\n  },\n}"
+                },
+                {
+                    "name": "Success",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'success',\n    title: 'Success!',\n    message: 'Your operation completed successfully.',\n    dismissible: false,\n  },\n}"
+                },
+                {
+                    "name": "Warning",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Warning',\n    message: 'Please review this important information.',\n    dismissible: false,\n  },\n}"
+                },
+                {
+                    "name": "WithCustomContent",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Custom Content',\n    message: '',\n    dismissible: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-alert [type]=\"type\" [title]=\"title\" [dismissible]=\"dismissible\">\n        <p style=\"margin: 0;\">This alert contains custom HTML content instead of a simple message.</p>\n        <ul style=\"margin: 0.5rem 0 0 0; padding-left: 1.5rem;\">\n          <li>You can add lists</li>\n          <li>Or any other HTML elements</li>\n          <li>Inside the alert</li>\n        </ul>\n      </app-alert>\n    `,\n  }),\n}"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "src/app/components/alert/alert.ts": [
+            "projects/ui-components/src/lib/alert/alert.ts": [
                 {
                     "name": "AlertType",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"info\" | \"success\" | \"warning\" | \"error\"",
-                    "file": "src/app/components/alert/alert.ts",
+                    "file": "projects/ui-components/src/lib/alert/alert.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 193
                 }
             ],
-            "src/stories/button.component.ts": [
-                {
-                    "name": "ButtonSeverity",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warn\" | \"danger\" | \"help\" | \"contrast\" | null",
-                    "file": "src/stories/button.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 193
-                },
+            "projects/ui-components/src/lib/button/button.ts": [
                 {
                     "name": "ButtonSize",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"small\" | \"medium\" | \"large\"",
-                    "file": "src/stories/button.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 193
-                }
-            ],
-            "src/app/components/button/button.ts": [
-                {
-                    "name": "ButtonSize",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"small\" | \"medium\" | \"large\"",
-                    "file": "src/app/components/button/button.ts",
+                    "file": "projects/ui-components/src/lib/button/button.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -996,11 +990,50 @@
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"primary\" | \"secondary\" | \"danger\" | \"success\"",
-                    "file": "src/app/components/button/button.ts",
+                    "file": "projects/ui-components/src/lib/button/button.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 193
+                }
+            ],
+            "projects/ui-components/src/lib/alert/alert.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<Alert>",
+                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-components/src/lib/card/card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<Card>",
+                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "projects/ui-components/src/lib/button/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<Button>",
+                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
                 }
             ]
         }
@@ -1011,49 +1044,110 @@
         "children": []
     },
     "coverage": {
-        "count": 16,
+        "count": 8,
         "status": "low",
         "files": [
             {
-                "filePath": "src/app/app.config.ts",
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "appConfig",
+                "name": "Dismissible",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/app.routes.ts",
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "routes",
+                "name": "Error",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/app.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "App",
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Info",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/alert/alert.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "Alert",
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/alert/alert.ts",
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoTitle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Success",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Warning",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithCustomContent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertComponent",
+                "coveragePercent": 88,
+                "coverageCount": "8/9",
+                "status": "very-good"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/alert/alert.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1063,16 +1157,106 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/button/button.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "Button",
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Danger",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/button/button.ts",
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Success",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 85,
+                "coverageCount": "6/7",
+                "status": "very-good"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/button/button.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1082,7 +1266,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/button/button.ts",
+                "filePath": "projects/ui-components/src/lib/button/button.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1092,69 +1276,73 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/card/card.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "Card",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/button.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ButtonComponent",
-                "coveragePercent": 88,
-                "coverageCount": "8/9",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/stories/button.component.ts",
-                "type": "type alias",
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "variable",
                 "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "ButtonSeverity",
+                "linksubtype": "variable",
+                "name": "Basic",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/button.component.ts",
-                "type": "type alias",
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "variable",
                 "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "ButtonSize",
+                "linksubtype": "variable",
+                "name": "Elevated",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/header.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeaderComponent",
-                "coveragePercent": 80,
-                "coverageCount": "4/5",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/stories/page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "PageComponent",
-                "coveragePercent": 80,
-                "coverageCount": "4/5",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/stories/user.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "User",
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/1",
                 "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoTitle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithImage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ui-components/src/lib/card/card.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardComponent",
+                "coveragePercent": 80,
+                "coverageCount": "4/5",
+                "status": "very-good"
             }
         ]
     }

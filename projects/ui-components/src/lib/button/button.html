@@ -1,0 +1,8 @@
+<button
+  [class]="'btn btn-' + variant() + ' btn-' + size()"
+  [disabled]="disabled()"
+  [attr.aria-label]="label()"
+  (click)="handleClick($event)"
+>
+  {{ label() }}
+</button>

@@ -1,0 +1,114 @@
+<div class="demo-container">
+  <header class="demo-header">
+    <h1>{{ title() }}</h1>
+    <p>Demonstration of the UI Components Library</p>
+  </header>
+
+  <main class="demo-content">
+    <section class="demo-section">
+      <h2>Buttons</h2>
+      <div class="button-group">
+        <lib-button
+          label="Primary"
+          variant="primary"
+          (onClick)="handleButtonClick('primary')"
+        />
+        <lib-button
+          label="Secondary"
+          variant="secondary"
+          (onClick)="handleButtonClick('secondary')"
+        />
+        <lib-button
+          label="Danger"
+          variant="danger"
+          (onClick)="handleButtonClick('danger')"
+        />
+        <lib-button
+          label="Success"
+          variant="success"
+          (onClick)="handleButtonClick('success')"
+        />
+      </div>
+
+      <h3>Button Sizes</h3>
+      <div class="button-group">
+        <lib-button label="Small" size="small" />
+        <lib-button label="Medium" size="medium" />
+        <lib-button label="Large" size="large" />
+      </div>
+
+      <h3>Disabled State</h3>
+      <div class="button-group">
+        <lib-button label="Disabled" [disabled]="true" />
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Alerts</h2>
+      @if (showSuccessAlert()) {
+        <lib-alert
+          type="success"
+          title="Success!"
+          message="Your operation completed successfully."
+          [dismissible]="true"
+          (onDismiss)="handleAlertDismiss('success')"
+        />
+      }
+
+      <lib-alert
+        type="info"
+        title="Information"
+        message="This is an informational message."
+      />
+
+      <lib-alert
+        type="warning"
+        title="Warning"
+        message="Please be aware of this warning."
+        [dismissible]="true"
+      />
+
+      @if (showErrorAlert()) {
+        <lib-alert
+          type="error"
+          title="Error"
+          message="An error occurred during the operation."
+          [dismissible]="true"
+          (onDismiss)="handleAlertDismiss('error')"
+        />
+      }
+    </section>
+
+    <section class="demo-section">
+      <h2>Cards</h2>
+      <div class="card-grid">
+        <lib-card
+          title="Simple Card"
+          subtitle="Basic card with title and subtitle"
+        >
+          <p>This is the card body content. You can put any content here using ng-content.</p>
+        </lib-card>
+
+        <lib-card
+          title="Elevated Card"
+          subtitle="Card with elevated appearance"
+          [elevated]="true"
+        >
+          <p>This card has an elevated style for emphasis.</p>
+        </lib-card>
+
+        <lib-card
+          title="Card with Image"
+          subtitle="Card featuring an image"
+          imageUrl="https://via.placeholder.com/400x200"
+        >
+          <p>Cards can display images at the top.</p>
+        </lib-card>
+      </div>
+    </section>
+  </main>
+
+  <footer class="demo-footer">
+    <p>Built with Angular {{ '21' }} and UI Components Library</p>
+  </footer>
+</div>

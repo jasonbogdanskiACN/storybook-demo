@@ -1,0 +1,16 @@
+<div [class]="'card ' + (elevated() ? 'card-elevated' : '')">
+  @if (imageUrl()) {
+    <img [src]="imageUrl()" [alt]="title() || 'Card image'" class="card-image" />
+  }
+  <div class="card-content">
+    @if (title()) {
+      <h3 class="card-title">{{ title() }}</h3>
+    }
+    @if (subtitle()) {
+      <p class="card-subtitle">{{ subtitle() }}</p>
+    }
+    <div class="card-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
