@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npx storybook@latest init:*)",
+      "Bash(npx ng generate:*)",
+      "Bash(npm run storybook:*)"
+    ]
+  }
+}
