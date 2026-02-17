@@ -1,0 +1,14 @@
+<p-select
+  [(ngModel)]="value"
+  [options]="options()"
+  optionLabel="label"
+  optionValue="value"
+  optionDisabled="disabled"
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [required]="required()"
+  [showClear]="showClear()"
+  [filter]="filter()"
+  [class]="sizeClass()"
+  [attr.aria-label]="computedAriaLabel()"
+/>

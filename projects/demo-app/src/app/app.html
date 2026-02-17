@@ -80,6 +80,154 @@
     </section>
 
     <section class="demo-section">
+      <h2>Input Fields (Reactive Forms)</h2>
+      <div class="form-group">
+        <div class="form-field">
+          <label>Username *</label>
+          <lib-input-text
+            [formControl]="userForm.controls.username"
+            [placeholder]="'Enter your username'"
+            [type]="'text'"
+            [required]="true"
+            [ariaLabel]="'Username input'"
+          />
+          @if (userForm.controls.username.value) {
+            <small>Value: {{ userForm.controls.username.value }}</small>
+          }
+          @if (userForm.controls.username.invalid && userForm.controls.username.touched) {
+            <small class="error">Username is required</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label>Email *</label>
+          <lib-input-text
+            [formControl]="userForm.controls.email"
+            [placeholder]="'Enter your email'"
+            [type]="'email'"
+            [required]="true"
+            [ariaLabel]="'Email input'"
+          />
+          @if (userForm.controls.email.value) {
+            <small>Value: {{ userForm.controls.email.value }}</small>
+          }
+          @if (userForm.controls.email.invalid && userForm.controls.email.touched) {
+            <small class="error">Valid email is required</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label>Password *</label>
+          <lib-input-text
+            [formControl]="userForm.controls.password"
+            [placeholder]="'Enter your password'"
+            [type]="'password'"
+            [required]="true"
+            [ariaLabel]="'Password input'"
+          />
+          @if (userForm.controls.password.invalid && userForm.controls.password.touched) {
+            <small class="error">Password must be at least 6 characters</small>
+          }
+        </div>
+
+        <h3>Input Sizes</h3>
+        <div class="form-field">
+          <label>Small Input</label>
+          <lib-input-text
+            [placeholder]="'Small size'"
+            [size]="'small'"
+          />
+        </div>
+
+        <div class="form-field">
+          <label>Medium Input</label>
+          <lib-input-text
+            [placeholder]="'Medium size (default)'"
+            [size]="'medium'"
+          />
+        </div>
+
+        <div class="form-field">
+          <label>Large Input</label>
+          <lib-input-text
+            [placeholder]="'Large size'"
+            [size]="'large'"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Select Dropdowns</h2>
+      <div class="form-group">
+        <div class="form-field">
+          <label>Country</label>
+          <lib-select
+            [(value)]="selectedCountry"
+            [options]="countryOptions"
+            [placeholder]="'Select your country'"
+            [showClear]="true"
+            [filter]="true"
+            [ariaLabel]="'Country select'"
+          />
+          @if (selectedCountry()) {
+            <small>Selected: {{ selectedCountry() }}</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label>Role</label>
+          <lib-select
+            [(value)]="selectedRole"
+            [options]="roleOptions"
+            [placeholder]="'Select your role'"
+            [showClear]="true"
+            [ariaLabel]="'Role select'"
+          />
+          @if (selectedRole()) {
+            <small>Selected: {{ selectedRole() }}</small>
+          }
+        </div>
+
+        <h3>Select Sizes</h3>
+        <div class="form-field">
+          <label>Small Select</label>
+          <lib-select
+            [options]="roleOptions"
+            [placeholder]="'Small size'"
+            [size]="'small'"
+          />
+        </div>
+
+        <div class="form-field">
+          <label>Medium Select</label>
+          <lib-select
+            [options]="roleOptions"
+            [placeholder]="'Medium size (default)'"
+            [size]="'medium'"
+          />
+        </div>
+
+        <div class="form-field">
+          <label>Large Select</label>
+          <lib-select
+            [options]="roleOptions"
+            [placeholder]="'Large size'"
+            [size]="'large'"
+          />
+        </div>
+
+        <div class="form-actions">
+          <lib-button
+            [label]="'Submit Form'"
+            [variant]="'success'"
+            (onClick)="handleFormSubmit()"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
       <h2>Cards</h2>
       <div class="card-grid">
         <lib-card

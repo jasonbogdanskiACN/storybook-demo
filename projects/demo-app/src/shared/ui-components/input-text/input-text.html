@@ -1,0 +1,12 @@
+<input
+  pInputText
+  [type]="type()"
+  [value]="value()"
+  (input)="handleInputChange($any($event.target).value)"
+  (blur)="handleBlur()"
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [required]="required()"
+  [class]="sizeClass()"
+  [attr.aria-label]="computedAriaLabel()"
+/>

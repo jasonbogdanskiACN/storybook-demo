@@ -1,0 +1,12 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+p-select {
+  width: 100%;
+
+  ::ng-deep .p-select {
+    width: 100%;
+  }
+}

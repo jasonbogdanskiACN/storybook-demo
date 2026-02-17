@@ -71,6 +71,42 @@ lib-alert {
   margin-top: 1.5rem;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 0.875rem;
+  }
+
+  small {
+    color: #667eea;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+
+    &.error {
+      color: #dc2626;
+    }
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
 .demo-footer {
   background: #2d3748;
   color: white;
