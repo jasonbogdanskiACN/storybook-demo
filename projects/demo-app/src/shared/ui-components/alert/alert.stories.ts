@@ -27,6 +27,17 @@ export const Info: Story = {
     message: 'This is an informational alert message.',
     dismissible: false,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const Success: Story = {
@@ -36,6 +47,17 @@ export const Success: Story = {
     message: 'Your operation completed successfully.',
     dismissible: false,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const Warning: Story = {
@@ -45,6 +67,17 @@ export const Warning: Story = {
     message: 'Please review this important information.',
     dismissible: false,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const Error: Story = {
@@ -54,6 +87,17 @@ export const Error: Story = {
     message: 'Something went wrong. Please try again.',
     dismissible: false,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const Dismissible: Story = {
@@ -63,6 +107,17 @@ export const Dismissible: Story = {
     message: 'Click the × button to dismiss this alert.',
     dismissible: true,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const NoTitle: Story = {
@@ -71,6 +126,17 @@ export const NoTitle: Story = {
     message: 'This alert has no title, just a message.',
     dismissible: false,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <lib-alert
+        [type]="type"
+        [title]="title"
+        [message]="message"
+        [dismissible]="dismissible"
+      />
+    `,
+  }),
 };
 
 export const WithCustomContent: Story = {
