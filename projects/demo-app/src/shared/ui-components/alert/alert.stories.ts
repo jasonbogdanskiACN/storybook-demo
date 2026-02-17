@@ -83,14 +83,14 @@ export const WithCustomContent: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <app-alert [type]="type" [title]="title" [dismissible]="dismissible">
+      <lib-alert [type]="type" [title]="title" [dismissible]="dismissible">
         <p style="margin: 0;">This alert contains custom HTML content instead of a simple message.</p>
         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.5rem;">
           <li>You can add lists</li>
           <li>Or any other HTML elements</li>
           <li>Inside the alert</li>
         </ul>
-      </app-alert>
+      </lib-alert>
     `,
   }),
 };
