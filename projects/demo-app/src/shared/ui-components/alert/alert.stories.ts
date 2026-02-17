@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { Alert } from './alert';
+import { AlertComponent } from './alert';
 
-const meta: Meta<Alert> = {
+const meta: Meta<AlertComponent> = {
   title: 'Components/Alert',
-  component: Alert,
+  component: AlertComponent,
   tags: ['autodocs'],
   argTypes: {
     type: {
@@ -18,7 +18,7 @@ const meta: Meta<Alert> = {
 };
 
 export default meta;
-type Story = StoryObj<Alert>;
+type Story = StoryObj<AlertComponent>;
 
 export const Info: Story = {
   args: {

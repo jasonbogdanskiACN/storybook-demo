@@ -6,6 +6,6 @@
     "resolveJsonModule": true
   },
   "exclude": [],
-  "include": ["../projects/ui-components/**/*.stories.*", "./preview.ts"],
+  "include": ["../projects/demo-app/src/shared/ui-components/**/*.stories.*", "./preview.ts"],
   "files": ["./typings.d.ts"]
 }

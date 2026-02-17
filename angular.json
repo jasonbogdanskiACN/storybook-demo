@@ -6,66 +6,6 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ui-components": {
-      "projectType": "library",
-      "root": "projects/ui-components",
-      "sourceRoot": "projects/ui-components/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ui-components/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ui-components/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test",
-          "options": {
-            "tsConfig": "projects/ui-components/tsconfig.spec.json"
-          }
-        },
-        "storybook": {
-          "builder": "@storybook/angular:start-storybook",
-          "options": {
-            "configDir": ".storybook",
-            "browserTarget": "ui-components:build",
-            "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              ".",
-              "-p",
-              "projects/ui-components/tsconfig.lib.json"
-            ],
-            "port": 6006
-          }
-        },
-        "build-storybook": {
-          "builder": "@storybook/angular:build-storybook",
-          "options": {
-            "configDir": ".storybook",
-            "browserTarget": "ui-components:build",
-            "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              ".",
-              "-p",
-              "projects/ui-components/tsconfig.lib.json"
-            ],
-            "outputDir": "storybook-static"
-          }
-        }
-      }
-    },
     "demo-app": {
       "projectType": "application",
       "schematics": {
@@ -131,6 +71,40 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "demo-app:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              ".",
+              "-p",
+              "projects/demo-app/tsconfig.app.json"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "demo-app:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              ".",
+              "-p",
+              "projects/demo-app/tsconfig.app.json"
+            ],
+            "outputDir": "storybook-static"
+          }
         }
       }
     }

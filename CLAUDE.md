@@ -12,16 +12,18 @@ This is an Angular 21 workspace (monorepo) using:
 
 ## Workspace Structure
 
-This workspace contains **two separate Angular projects**:
+This is a single Angular application with shared UI components:
 
-### 1. UI Components Library (`projects/ui-components/`)
+### Demo Application (`projects/demo-app/`)
 
-A reusable component library containing:
-- **Button Component** - Customizable button with variants (primary, secondary, danger, success) and sizes
-- **Alert Component** - Alert messages with types (info, success, warning, error) and dismissible option
-- **Card Component** - Card container with title, subtitle, and optional image
+Main application containing:
+- **`src/app/`** - Application code
+- **`src/shared/ui-components/`** - Reusable shared components:
+  - **Button Component** - Customizable button with variants (primary, secondary, danger, success) and sizes
+  - **Alert Component** - Alert messages with types (info, success, warning, error) and dismissible option
+  - **Card Component** - Card container with title, subtitle, and optional image
 
-All library components follow Angular best practices:
+All shared components follow Angular best practices:
 - Signal-based architecture (input(), output(), signal(), computed())
 - OnPush change detection for optimal performance
 - Modern control flow syntax (@if, @for)
@@ -30,43 +32,38 @@ All library components follow Angular best practices:
 - Accessibility attributes (ARIA labels)
 - Comprehensive JSDoc documentation
 
-**Component Selectors**: All library components use the `lib-` prefix (e.g., `<lib-button>`, `<lib-alert>`, `<lib-card>`)
+**Component Selectors**: All shared components use the `lib-` prefix (e.g., `<lib-button>`, `<lib-alert>`, `<lib-card>`)
 
-### 2. Demo Application (`projects/demo-app/`)
+### Storybook
 
-A consumer application that demonstrates the library components. This app:
-- Imports components from the `ui-components` library
-- Shows real-world usage examples
-- Demonstrates all component features and variations
-
-**Purpose**: Serves as both documentation and testing ground for the component library.
+Interactive documentation for shared components located at `.storybook/`. Provides isolated component development and auto-generated documentation.
 
 ## Development Workflows
 
-### Component Library Development (Storybook)
+### Component Development (Storybook)
 
 Use Storybook for isolated component development and documentation:
 
 ```bash
 npm run storybook
 # Opens Storybook at http://localhost:6006
-# Shows all library components with interactive controls
+# Shows all shared components with interactive controls
 # Auto-reloads when you edit component files
 ```
 
 **When to use**:
-- Developing or modifying library components
+- Developing or modifying shared components
 - Testing component variations and edge cases
 - Viewing auto-generated documentation from JSDoc comments
 
-### Consumer App Development
+### Application Development
 
-Use the demo app to test library integration:
+Use the demo app to test components in context:
 
 ```bash
 npm run start:demo
 # Serves demo app at http://localhost:4200
-# Hot-reloads when library components change (no rebuild needed!)
+# Hot-reloads when components or app code changes
 ```
 
 **When to use**:
@@ -77,26 +74,14 @@ npm run start:demo
 ### Building for Production
 
 ```bash
-# Build library only
-npm run build:lib
-# Output: dist/ui-components/
-
-# Build demo app only
+# Build demo app
 npm run build:demo
 # Output: dist/demo-app/
-
-# Build everything
-npm run build:all
 ```
-
-**Note**: The library must be built before the demo app can be built in production mode.
 
 ### Running Tests
 
 ```bash
-# Test library components
-npm run test:lib
-
 # Test demo app
 npm run test:demo
 
@@ -126,7 +111,7 @@ import { ButtonComponent, AlertComponent, CardComponent } from 'ui-components';
 export class MyComponent {}
 ```
 
-**TypeScript Path Mapping**: The `ui-components` import is resolved via TypeScript path mapping configured in `tsconfig.json`, which points directly to the library source files during development for hot-reload.
+**TypeScript Path Mapping**: The `ui-components` import is resolved via TypeScript path mapping configured in `tsconfig.json`, which points directly to the shared component files in `projects/demo-app/src/shared/ui-components/`.
 
 ## Angular MCP Integration
 

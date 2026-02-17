@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { Button } from './button';
+import { ButtonComponent } from './button';
 
-const meta: Meta<Button> = {
+const meta: Meta<ButtonComponent> = {
   title: 'Components/Button',
-  component: Button,
+  component: ButtonComponent,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -22,7 +22,7 @@ const meta: Meta<Button> = {
 };
 
 export default meta;
-type Story = StoryObj<Button>;
+type Story = StoryObj<ButtonComponent>;
 
 export const Primary: Story = {
   args: {

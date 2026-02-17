@@ -10,7 +10,7 @@
         {
             "name": "AlertComponent",
             "id": "component-AlertComponent-5bf4c8d1a1170082b9ae45f1444659e9310a23b360851d13475bc75250c6d676996638509b887f8f3f408f91af924179a0bc9af017bbe4071e1ff44d489b362f",
-            "file": "projects/ui-components/src/lib/alert/alert.ts",
+            "file": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -178,9 +178,177 @@
             "templateData": "@if (!dismissed()) {\r\n  <div [class]=\"'alert alert-' + type()\">\r\n    <div class=\"alert-content\">\r\n      <span class=\"alert-icon\" aria-label=\"Alert icon\">{{ icon() }}</span>\r\n      <div class=\"alert-text\">\r\n        @if (title()) {\r\n          <h4 class=\"alert-title\">{{ title() }}</h4>\r\n        }\r\n        <p class=\"alert-message\">{{ message() }}</p>\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n    @if (dismissible()) {\r\n      <button class=\"alert-dismiss\" (click)=\"dismiss()\" aria-label=\"Dismiss alert\">\r\n        ×\r\n      </button>\r\n    }\r\n  </div>\r\n}\r\n"
         },
         {
+            "name": "App",
+            "id": "component-App-7da682dd94a2ca25d2ac5bd3dcb7d1e87969e783d3b8fe656d29613d01f500d3039f16295faff62272f03acae39a8de7c1c93deda4c33bd1039eee71ed377987",
+            "file": "projects/demo-app/src/app/app.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "showErrorAlert",
+                    "defaultValue": "signal(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "showSuccessAlert",
+                    "defaultValue": "signal(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "signal('UI Components Demo')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleAlertDismiss",
+                    "args": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleButtonClick",
+                    "args": [
+                        {
+                            "name": "variant",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "variant",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "AlertComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "CardComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { ButtonComponent, AlertComponent, CardComponent } from 'ui-components';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [ButtonComponent, AlertComponent, CardComponent],\r\n  templateUrl: './app.html',\r\n  styleUrl: './app.scss'\r\n})\r\nexport class App {\r\n  protected readonly title = signal('UI Components Demo');\r\n\r\n  protected readonly showSuccessAlert = signal(true);\r\n  protected readonly showErrorAlert = signal(true);\r\n\r\n  protected handleButtonClick(variant: string): void {\r\n    console.log(`${variant} button clicked!`);\r\n  }\r\n\r\n  protected handleAlertDismiss(type: string): void {\r\n    console.log(`${type} alert dismissed`);\r\n    if (type === 'success') {\r\n      this.showSuccessAlert.set(false);\r\n    } else if (type === 'error') {\r\n      this.showErrorAlert.set(false);\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./app.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"demo-container\">\r\n  <header class=\"demo-header\">\r\n    <h1>{{ title() }}</h1>\r\n    <p>Demonstration of the UI Components Library</p>\r\n  </header>\r\n\r\n  <main class=\"demo-content\">\r\n    <section class=\"demo-section\">\r\n      <h2>Buttons</h2>\r\n      <div class=\"button-group\">\r\n        <lib-button\r\n          label=\"Primary\"\r\n          variant=\"primary\"\r\n          (onClick)=\"handleButtonClick('primary')\"\r\n        />\r\n        <lib-button\r\n          label=\"Secondary\"\r\n          variant=\"secondary\"\r\n          (onClick)=\"handleButtonClick('secondary')\"\r\n        />\r\n        <lib-button\r\n          label=\"Danger\"\r\n          variant=\"danger\"\r\n          (onClick)=\"handleButtonClick('danger')\"\r\n        />\r\n        <lib-button\r\n          label=\"Success\"\r\n          variant=\"success\"\r\n          (onClick)=\"handleButtonClick('success')\"\r\n        />\r\n      </div>\r\n\r\n      <h3>Button Sizes</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button label=\"Small\" size=\"small\" />\r\n        <lib-button label=\"Medium\" size=\"medium\" />\r\n        <lib-button label=\"Large\" size=\"large\" />\r\n      </div>\r\n\r\n      <h3>Disabled State</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button label=\"Disabled\" [disabled]=\"true\" />\r\n      </div>\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Alerts</h2>\r\n      @if (showSuccessAlert()) {\r\n        <lib-alert\r\n          type=\"success\"\r\n          title=\"Success!\"\r\n          message=\"Your operation completed successfully.\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('success')\"\r\n        />\r\n      }\r\n\r\n      <lib-alert\r\n        type=\"info\"\r\n        title=\"Information\"\r\n        message=\"This is an informational message.\"\r\n      />\r\n\r\n      <lib-alert\r\n        type=\"warning\"\r\n        title=\"Warning\"\r\n        message=\"Please be aware of this warning.\"\r\n        [dismissible]=\"true\"\r\n      />\r\n\r\n      @if (showErrorAlert()) {\r\n        <lib-alert\r\n          type=\"error\"\r\n          title=\"Error\"\r\n          message=\"An error occurred during the operation.\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('error')\"\r\n        />\r\n      }\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Cards</h2>\r\n      <div class=\"card-grid\">\r\n        <lib-card\r\n          title=\"Simple Card\"\r\n          subtitle=\"Basic card with title and subtitle\"\r\n        >\r\n          <p>This is the card body content. You can put any content here using ng-content.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          title=\"Elevated Card\"\r\n          subtitle=\"Card with elevated appearance\"\r\n          [elevated]=\"true\"\r\n        >\r\n          <p>This card has an elevated style for emphasis.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          title=\"Card with Image\"\r\n          subtitle=\"Card featuring an image\"\r\n          imageUrl=\"https://via.placeholder.com/400x200\"\r\n        >\r\n          <p>Cards can display images at the top.</p>\r\n        </lib-card>\r\n      </div>\r\n    </section>\r\n  </main>\r\n\r\n  <footer class=\"demo-footer\">\r\n    <p>Built with Angular {{ '21' }} and UI Components Library</p>\r\n  </footer>\r\n</div>\r\n"
+        },
+        {
             "name": "ButtonComponent",
             "id": "component-ButtonComponent-496d7491caad0742eb155bd2309215661e405a32dd30a417224a377fe4f568440d3865df805fb98cc16bccb5d585d4bab4036413bc69ea66841879214181d757",
-            "file": "projects/ui-components/src/lib/button/button.ts",
+            "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -353,7 +521,7 @@
         {
             "name": "CardComponent",
             "id": "component-CardComponent-cf8b7cddbc6fc840d925890fa957f3adee97558bc9a60f2ee2bafc22db1e8f07a8e291a96c5519496e4e2a5571ed7590fc73f62f82ae319e16e5aa57b7dc24ed",
-            "file": "projects/ui-components/src/lib/card/card.ts",
+            "file": "projects/demo-app/src/shared/ui-components/card/card.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -459,214 +627,14 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "Basic",
+                "name": "appConfig",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                "file": "projects/demo-app/src/app/app.config.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    title: 'Card Title',\n    subtitle: 'This is a subtitle',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This is the card content. You can put any content here.</p>\n      </app-card>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "Danger",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Danger Button',\n    variant: 'danger',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "Disabled",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: true,\n  },\n}"
-            },
-            {
-                "name": "Dismissible",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Dismissible Alert',\n    message: 'Click the × button to dismiss this alert.',\n    dismissible: true,\n  },\n}"
-            },
-            {
-                "name": "Elevated",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    title: 'Elevated Card',\n    subtitle: 'With shadow and hover effect',\n    elevated: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This card has an elevated style with shadow and hover effects.</p>\n        <p>Try hovering over it!</p>\n      </app-card>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "Error",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'error',\n    title: 'Error',\n    message: 'Something went wrong. Please try again.',\n    dismissible: false,\n  },\n}"
-            },
-            {
-                "name": "Info",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Information',\n    message: 'This is an informational alert message.',\n    dismissible: false,\n  },\n}"
-            },
-            {
-                "name": "Large",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Large Button',\n    variant: 'primary',\n    size: 'large',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<Alert>",
-                "defaultValue": "{\n  title: 'Components/Alert',\n  component: Alert,\n  tags: ['autodocs'],\n  argTypes: {\n    type: {\n      control: 'select',\n      options: ['info', 'success', 'warning', 'error'],\n    },\n    dismissible: {\n      control: 'boolean',\n    },\n    onDismiss: { action: 'dismissed' },\n  },\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<Card>",
-                "defaultValue": "{\n  title: 'Components/Card',\n  component: Card,\n  tags: ['autodocs'],\n  argTypes: {\n    elevated: {\n      control: 'boolean',\n    },\n  },\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<Button>",
-                "defaultValue": "{\n  title: 'Components/Button',\n  component: Button,\n  tags: ['autodocs'],\n  argTypes: {\n    variant: {\n      control: 'select',\n      options: ['primary', 'secondary', 'danger', 'success'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    disabled: {\n      control: 'boolean',\n    },\n    onClick: { action: 'clicked' },\n  },\n}"
-            },
-            {
-                "name": "NoTitle",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'success',\n    message: 'This alert has no title, just a message.',\n    dismissible: false,\n  },\n}"
-            },
-            {
-                "name": "NoTitle",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [elevated]=\"elevated\">\n        <h3>Custom Content</h3>\n        <p>You can use a card without a title and create your own layout.</p>\n        <button style=\"padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer;\">\n          Action\n        </button>\n      </app-card>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Primary Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Secondary Button',\n    variant: 'secondary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "Small",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Small Button',\n    variant: 'primary',\n    size: 'small',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "Success",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'success',\n    title: 'Success!',\n    message: 'Your operation completed successfully.',\n    dismissible: false,\n  },\n}"
-            },
-            {
-                "name": "Success",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Success Button',\n    variant: 'success',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-            },
-            {
-                "name": "Warning",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Warning',\n    message: 'Please review this important information.',\n    dismissible: false,\n  },\n}"
-            },
-            {
-                "name": "WithCustomContent",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Custom Content',\n    message: '',\n    dismissible: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-alert [type]=\"type\" [title]=\"title\" [dismissible]=\"dismissible\">\n        <p style=\"margin: 0;\">This alert contains custom HTML content instead of a simple message.</p>\n        <ul style=\"margin: 0.5rem 0 0 0; padding-left: 1.5rem;\">\n          <li>You can add lists</li>\n          <li>Or any other HTML elements</li>\n          <li>Inside the alert</li>\n        </ul>\n      </app-alert>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "WithImage",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    title: 'Beautiful Landscape',\n    subtitle: 'A stunning view',\n    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [imageUrl]=\"imageUrl\" [elevated]=\"elevated\">\n        <p>This card includes a beautiful header image.</p>\n      </app-card>\n    `,\n  }),\n}"
+                "type": "ApplicationConfig",
+                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    \r\n  ]\r\n}"
             }
         ],
         "functions": [],
@@ -676,7 +644,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"info\" | \"success\" | \"warning\" | \"error\"",
-                "file": "projects/ui-components/src/lib/alert/alert.ts",
+                "file": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -687,7 +655,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"small\" | \"medium\" | \"large\"",
-                "file": "projects/ui-components/src/lib/button/button.ts",
+                "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -698,288 +666,51 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"primary\" | \"secondary\" | \"danger\" | \"success\"",
-                "file": "projects/ui-components/src/lib/button/button.ts",
+                "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 193
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<Alert>",
-                "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<Card>",
-                "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<Button>",
-                "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
             }
         ],
         "enumerations": [],
         "groupedVariables": {
-            "projects/ui-components/src/lib/card/card.stories.ts": [
+            "projects/demo-app/src/app/app.config.ts": [
                 {
-                    "name": "Basic",
+                    "name": "appConfig",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
+                    "file": "projects/demo-app/src/app/app.config.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    title: 'Card Title',\n    subtitle: 'This is a subtitle',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This is the card content. You can put any content here.</p>\n      </app-card>\n    `,\n  }),\n}"
-                },
-                {
-                    "name": "Elevated",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    title: 'Elevated Card',\n    subtitle: 'With shadow and hover effect',\n    elevated: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [elevated]=\"elevated\">\n        <p>This card has an elevated style with shadow and hover effects.</p>\n        <p>Try hovering over it!</p>\n      </app-card>\n    `,\n  }),\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<Card>",
-                    "defaultValue": "{\n  title: 'Components/Card',\n  component: Card,\n  tags: ['autodocs'],\n  argTypes: {\n    elevated: {\n      control: 'boolean',\n    },\n  },\n}"
-                },
-                {
-                    "name": "NoTitle",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [elevated]=\"elevated\">\n        <h3>Custom Content</h3>\n        <p>You can use a card without a title and create your own layout.</p>\n        <button style=\"padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer;\">\n          Action\n        </button>\n      </app-card>\n    `,\n  }),\n}"
-                },
-                {
-                    "name": "WithImage",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    title: 'Beautiful Landscape',\n    subtitle: 'A stunning view',\n    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',\n    elevated: false,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-card [title]=\"title\" [subtitle]=\"subtitle\" [imageUrl]=\"imageUrl\" [elevated]=\"elevated\">\n        <p>This card includes a beautiful header image.</p>\n      </app-card>\n    `,\n  }),\n}"
-                }
-            ],
-            "projects/ui-components/src/lib/button/button.stories.ts": [
-                {
-                    "name": "Danger",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Danger Button',\n    variant: 'danger',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-                },
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: true,\n  },\n}"
-                },
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Large Button',\n    variant: 'primary',\n    size: 'large',\n    disabled: false,\n  },\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<Button>",
-                    "defaultValue": "{\n  title: 'Components/Button',\n  component: Button,\n  tags: ['autodocs'],\n  argTypes: {\n    variant: {\n      control: 'select',\n      options: ['primary', 'secondary', 'danger', 'success'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    disabled: {\n      control: 'boolean',\n    },\n    onClick: { action: 'clicked' },\n  },\n}"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Primary Button',\n    variant: 'primary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Secondary Button',\n    variant: 'secondary',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Small Button',\n    variant: 'primary',\n    size: 'small',\n    disabled: false,\n  },\n}"
-                },
-                {
-                    "name": "Success",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Success Button',\n    variant: 'success',\n    size: 'medium',\n    disabled: false,\n  },\n}"
-                }
-            ],
-            "projects/ui-components/src/lib/alert/alert.stories.ts": [
-                {
-                    "name": "Dismissible",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Dismissible Alert',\n    message: 'Click the × button to dismiss this alert.',\n    dismissible: true,\n  },\n}"
-                },
-                {
-                    "name": "Error",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'error',\n    title: 'Error',\n    message: 'Something went wrong. Please try again.',\n    dismissible: false,\n  },\n}"
-                },
-                {
-                    "name": "Info",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'info',\n    title: 'Information',\n    message: 'This is an informational alert message.',\n    dismissible: false,\n  },\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<Alert>",
-                    "defaultValue": "{\n  title: 'Components/Alert',\n  component: Alert,\n  tags: ['autodocs'],\n  argTypes: {\n    type: {\n      control: 'select',\n      options: ['info', 'success', 'warning', 'error'],\n    },\n    dismissible: {\n      control: 'boolean',\n    },\n    onDismiss: { action: 'dismissed' },\n  },\n}"
-                },
-                {
-                    "name": "NoTitle",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'success',\n    message: 'This alert has no title, just a message.',\n    dismissible: false,\n  },\n}"
-                },
-                {
-                    "name": "Success",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'success',\n    title: 'Success!',\n    message: 'Your operation completed successfully.',\n    dismissible: false,\n  },\n}"
-                },
-                {
-                    "name": "Warning",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Warning',\n    message: 'Please review this important information.',\n    dismissible: false,\n  },\n}"
-                },
-                {
-                    "name": "WithCustomContent",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    type: 'warning',\n    title: 'Custom Content',\n    message: '',\n    dismissible: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <app-alert [type]=\"type\" [title]=\"title\" [dismissible]=\"dismissible\">\n        <p style=\"margin: 0;\">This alert contains custom HTML content instead of a simple message.</p>\n        <ul style=\"margin: 0.5rem 0 0 0; padding-left: 1.5rem;\">\n          <li>You can add lists</li>\n          <li>Or any other HTML elements</li>\n          <li>Inside the alert</li>\n        </ul>\n      </app-alert>\n    `,\n  }),\n}"
+                    "type": "ApplicationConfig",
+                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    \r\n  ]\r\n}"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "projects/ui-components/src/lib/alert/alert.ts": [
+            "projects/demo-app/src/shared/ui-components/alert/alert.ts": [
                 {
                     "name": "AlertType",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"info\" | \"success\" | \"warning\" | \"error\"",
-                    "file": "projects/ui-components/src/lib/alert/alert.ts",
+                    "file": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 193
                 }
             ],
-            "projects/ui-components/src/lib/button/button.ts": [
+            "projects/demo-app/src/shared/ui-components/button/button.ts": [
                 {
                     "name": "ButtonSize",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"small\" | \"medium\" | \"large\"",
-                    "file": "projects/ui-components/src/lib/button/button.ts",
+                    "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -990,50 +721,11 @@
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "\"primary\" | \"secondary\" | \"danger\" | \"success\"",
-                    "file": "projects/ui-components/src/lib/button/button.ts",
+                    "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 193
-                }
-            ],
-            "projects/ui-components/src/lib/alert/alert.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<Alert>",
-                    "file": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
-            "projects/ui-components/src/lib/card/card.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<Card>",
-                    "file": "projects/ui-components/src/lib/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
-            "projects/ui-components/src/lib/button/button.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<Button>",
-                    "file": "projects/ui-components/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
                 }
             ]
         }
@@ -1044,101 +736,30 @@
         "children": []
     },
     "coverage": {
-        "count": 8,
-        "status": "low",
+        "count": 31,
+        "status": "medium",
         "files": [
             {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
+                "filePath": "projects/demo-app/src/app/app.config.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Dismissible",
+                "name": "appConfig",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Error",
+                "filePath": "projects/demo-app/src/app/app.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "App",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Info",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "NoTitle",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Success",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Warning",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "WithCustomContent",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/alert/alert.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "AlertComponent",
@@ -1147,7 +768,7 @@
                 "status": "very-good"
             },
             {
-                "filePath": "projects/ui-components/src/lib/alert/alert.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1157,97 +778,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Danger",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Disabled",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Large",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Small",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Success",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/button/button.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/button/button.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
@@ -1256,7 +787,7 @@
                 "status": "very-good"
             },
             {
-                "filePath": "projects/ui-components/src/lib/button/button.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/button/button.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1266,7 +797,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ui-components/src/lib/button/button.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/button/button.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -1276,67 +807,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Basic",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Elevated",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "NoTitle",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "WithImage",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ui-components/src/lib/card/card.ts",
+                "filePath": "projects/demo-app/src/shared/ui-components/card/card.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CardComponent",
