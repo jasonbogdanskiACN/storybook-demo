@@ -8,6 +8,13 @@
     "primeng": {
       "command": "npx",
       "args": ["-y", "@primeng/mcp"]
+    },
+    "storybook-mcp": {
+      "url": "http://localhost:6006/mcp",
+      "type": "http",
+      "headers": {
+        "X-MCP-Toolsets": "dev"
+      }
     }
   }
 }

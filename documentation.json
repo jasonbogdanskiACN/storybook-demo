@@ -1,6 +1,57 @@
 {
     "pipes": [],
-    "interfaces": [],
+    "interfaces": [
+        {
+            "name": "SelectOption",
+            "id": "interface-SelectOption-06fb9ef5b3fa02859a112e38ab5aac8167470d8d826a1d92f58b3d2c2c4509f1baf201d1c4711742621831ab46ffe4a361081b70c9539130e131ae2bf5e2a6f9",
+            "file": "projects/demo-app/src/shared/ui-components/select/select.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';\r\nimport { SelectModule } from 'primeng/select';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\nexport type SelectSize = 'small' | 'medium' | 'large';\r\n\r\n/** Option interface for select dropdown */\r\nexport interface SelectOption<T = string> {\r\n  /** Display label for the option */\r\n  label: string;\r\n  /** Value of the option */\r\n  value: T;\r\n  /** Whether the option is disabled */\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'lib-select',\r\n  standalone: true,\r\n  imports: [SelectModule, FormsModule],\r\n  templateUrl: './select.html',\r\n  styleUrl: './select.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class SelectComponent<T = string> {\r\n  /** The selected value (two-way binding) */\r\n  readonly value = model<T | null>(null);\r\n\r\n  /** Array of options to display */\r\n  readonly options = input.required<SelectOption<T>[]>();\r\n\r\n  /** Placeholder text when no value is selected */\r\n  readonly placeholder = input<string>('Select an option');\r\n\r\n  /** Select size */\r\n  readonly size = input<SelectSize>('medium');\r\n\r\n  /** Whether select is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Whether select is required */\r\n  readonly required = input<boolean>(false);\r\n\r\n  /** Whether to show a clear button */\r\n  readonly showClear = input<boolean>(false);\r\n\r\n  /** Whether to enable filtering/search */\r\n  readonly filter = input<boolean>(false);\r\n\r\n  /** Select ARIA label for accessibility */\r\n  readonly ariaLabel = input<string>('');\r\n\r\n  /**\r\n   * Map size to PrimeNG size class\r\n   * @internal\r\n   */\r\n  protected readonly sizeClass = computed<string>(() => {\r\n    const size = this.size();\r\n    if (size === 'small') return 'p-select-sm';\r\n    if (size === 'large') return 'p-select-lg';\r\n    return '';\r\n  });\r\n\r\n  /**\r\n   * Computed ARIA label with fallback to placeholder\r\n   * @internal\r\n   */\r\n  protected readonly computedAriaLabel = computed<string>(() => {\r\n    return this.ariaLabel() || this.placeholder() || 'Select dropdown';\r\n  });\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Whether the option is disabled</p>\n",
+                    "line": 14,
+                    "rawdescription": "\nWhether the option is disabled"
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Display label for the option</p>\n",
+                    "line": 10,
+                    "rawdescription": "\nDisplay label for the option"
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Value of the option</p>\n",
+                    "line": 12,
+                    "rawdescription": "\nValue of the option"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "description": "<p>Option interface for select dropdown</p>\n",
+            "rawdescription": "\nOption interface for select dropdown",
+            "methods": [],
+            "extends": []
+        }
+    ],
     "injectables": [],
     "guards": [],
     "interceptors": [],
@@ -275,12 +326,13 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "@if (!dismissed()) {\r\n  <div style=\"position: relative;\">\r\n    <p-message\r\n      [severity]=\"severity()\"\r\n    >\r\n      <ng-template pTemplate=\"headless\">\r\n        <div class=\"p-message-wrapper\" style=\"padding: 1rem; display: flex; align-items: start; gap: 0.75rem;\">\r\n          <i [class]=\"'pi ' + (severity() === 'success' ? 'pi-check-circle' : severity() === 'info' ? 'pi-info-circle' : severity() === 'warn' ? 'pi-exclamation-triangle' : 'pi-times-circle')\" style=\"font-size: 1.25rem;\"></i>\r\n          <div style=\"flex: 1;\">\r\n            @if (title()) {\r\n              <h4 style=\"margin: 0 0 0.5rem 0; font-weight: 600;\">{{ title() }}</h4>\r\n            }\r\n            @if (message()) {\r\n              <p style=\"margin: 0;\">{{ message() }}</p>\r\n            }\r\n            <ng-content></ng-content>\r\n          </div>\r\n          @if (dismissible()) {\r\n            <button\r\n              type=\"button\"\r\n              class=\"p-message-close-button\"\r\n              (click)=\"dismiss()\"\r\n              aria-label=\"Dismiss alert\"\r\n              style=\"background: transparent; border: none; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center;\"\r\n            >\r\n              <i class=\"pi pi-times\" style=\"font-size: 1rem;\"></i>\r\n            </button>\r\n          }\r\n        </div>\r\n      </ng-template>\r\n    </p-message>\r\n  </div>\r\n}\r\n"
+            "templateData": "@if (!dismissed()) {\r\n  <div style=\"position: relative;\">\r\n    <p-message\r\n      [severity]=\"severity()\"\r\n      [text]=\"summary() + (message() ? ': ' + message() : '')\"\r\n    />\r\n    @if (dismissible()) {\r\n      <button\r\n        type=\"button\"\r\n        (click)=\"dismiss()\"\r\n        aria-label=\"Dismiss alert\"\r\n        style=\"position: absolute; top: 0.75rem; right: 0.75rem; background: transparent; border: none; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center; z-index: 1;\"\r\n      >\r\n        <i class=\"pi pi-times\" style=\"font-size: 1rem;\"></i>\r\n      </button>\r\n    }\r\n    <ng-content></ng-content>\r\n  </div>\r\n}\r\n"
         },
         {
-            "name": "App",
-            "id": "component-App-7da682dd94a2ca25d2ac5bd3dcb7d1e87969e783d3b8fe656d29613d01f500d3039f16295faff62272f03acae39a8de7c1c93deda4c33bd1039eee71ed377987",
+            "name": "AppComponent",
+            "id": "component-AppComponent-751202eefd70ee6a4a6e8cd9217fdca83607e289d7f7e1d2e69812acfe411f79279703534e213de1e8c0b5648c0834392d579270e3a460ac003273cd41a57824",
             "file": "projects/demo-app/src/app/app.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -298,6 +350,66 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "countryOptions",
+                    "defaultValue": "[\r\n    { label: 'United States', value: 'us' },\r\n    { label: 'United Kingdom', value: 'uk' },\r\n    { label: 'Canada', value: 'ca' },\r\n    { label: 'Australia', value: 'au' },\r\n    { label: 'Germany', value: 'de' },\r\n    { label: 'France', value: 'fr' },\r\n    { label: 'Japan', value: 'jp' },\r\n    { label: 'China', value: 'cn' },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SelectOption[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "roleOptions",
+                    "defaultValue": "[\r\n    { label: 'Administrator', value: 'admin' },\r\n    { label: 'Developer', value: 'developer' },\r\n    { label: 'Designer', value: 'designer' },\r\n    { label: 'Manager', value: 'manager' },\r\n    { label: 'User', value: 'user' },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SelectOption[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 52,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "selectedCountry",
+                    "defaultValue": "signal<string | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "selectedRole",
+                    "defaultValue": "signal<string | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 61,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
                     "name": "showErrorAlert",
                     "defaultValue": "signal(true)",
                     "deprecated": false,
@@ -306,7 +418,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 31,
                     "modifierKind": [
                         124,
                         148
@@ -321,7 +433,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14,
+                    "line": 30,
                     "modifierKind": [
                         124,
                         148
@@ -336,7 +448,22 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 12,
+                    "line": 28,
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                },
+                {
+                    "name": "userForm",
+                    "defaultValue": "new FormGroup({\r\n    username: new FormControl('', [Validators.required]),\r\n    email: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
                     "modifierKind": [
                         124,
                         148
@@ -359,7 +486,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -394,7 +521,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -412,6 +539,19 @@
                                 "text": "param"
                             }
                         }
+                    ]
+                },
+                {
+                    "name": "handleFormSubmit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 76,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        124
                     ]
                 }
             ],
@@ -432,18 +572,30 @@
                 {
                     "name": "CardComponent",
                     "type": "component"
+                },
+                {
+                    "name": "InputTextComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SelectComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { ButtonComponent, AlertComponent, CardComponent } from 'ui-components';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [ButtonComponent, AlertComponent, CardComponent],\r\n  templateUrl: './app.html',\r\n  styleUrl: './app.scss'\r\n})\r\nexport class App {\r\n  protected readonly title = signal('UI Components Demo');\r\n\r\n  protected readonly showSuccessAlert = signal(true);\r\n  protected readonly showErrorAlert = signal(true);\r\n\r\n  protected handleButtonClick(variant: string): void {\r\n    console.log(`${variant} button clicked!`);\r\n  }\r\n\r\n  protected handleAlertDismiss(type: string): void {\r\n    console.log(`${type} alert dismissed`);\r\n    if (type === 'success') {\r\n      this.showSuccessAlert.set(false);\r\n    } else if (type === 'error') {\r\n      this.showErrorAlert.set(false);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, signal } from '@angular/core';\r\nimport { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';\r\nimport {\r\n  ButtonComponent,\r\n  AlertComponent,\r\n  CardComponent,\r\n  InputTextComponent,\r\n  SelectComponent,\r\n  SelectOption\r\n} from 'ui-components';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [\r\n    ButtonComponent,\r\n    AlertComponent,\r\n    CardComponent,\r\n    InputTextComponent,\r\n    SelectComponent,\r\n    ReactiveFormsModule\r\n  ],\r\n  templateUrl: './app.html',\r\n  styleUrl: './app.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AppComponent {\r\n  protected readonly title = signal('UI Components Demo');\r\n\r\n  protected readonly showSuccessAlert = signal(true);\r\n  protected readonly showErrorAlert = signal(true);\r\n\r\n  // Reactive form\r\n  protected readonly userForm = new FormGroup({\r\n    username: new FormControl('', [Validators.required]),\r\n    email: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\r\n  });\r\n\r\n  // Select options\r\n  protected readonly countryOptions: SelectOption[] = [\r\n    { label: 'United States', value: 'us' },\r\n    { label: 'United Kingdom', value: 'uk' },\r\n    { label: 'Canada', value: 'ca' },\r\n    { label: 'Australia', value: 'au' },\r\n    { label: 'Germany', value: 'de' },\r\n    { label: 'France', value: 'fr' },\r\n    { label: 'Japan', value: 'jp' },\r\n    { label: 'China', value: 'cn' },\r\n  ];\r\n\r\n  protected readonly roleOptions: SelectOption[] = [\r\n    { label: 'Administrator', value: 'admin' },\r\n    { label: 'Developer', value: 'developer' },\r\n    { label: 'Designer', value: 'designer' },\r\n    { label: 'Manager', value: 'manager' },\r\n    { label: 'User', value: 'user' },\r\n  ];\r\n\r\n  protected readonly selectedCountry = signal<string | null>(null);\r\n  protected readonly selectedRole = signal<string | null>(null);\r\n\r\n  protected handleButtonClick(variant: string): void {\r\n    console.warn(`${variant} button clicked!`);\r\n  }\r\n\r\n  protected handleAlertDismiss(type: string): void {\r\n    console.warn(`${type} alert dismissed`);\r\n    if (type === 'success') {\r\n      this.showSuccessAlert.set(false);\r\n    } else if (type === 'error') {\r\n      this.showErrorAlert.set(false);\r\n    }\r\n  }\r\n\r\n  protected handleFormSubmit(): void {\r\n    if (this.userForm.valid) {\r\n      console.warn('Form submitted:', {\r\n        ...this.userForm.value,\r\n        country: this.selectedCountry(),\r\n        role: this.selectedRole(),\r\n      });\r\n    } else {\r\n      console.warn('Form is invalid');\r\n      this.userForm.markAllAsTouched();\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./app.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"demo-container\">\r\n  <header class=\"demo-header\">\r\n    <h1>{{ title() }}</h1>\r\n    <p>Demonstration of the UI Components Library</p>\r\n  </header>\r\n\r\n  <main class=\"demo-content\">\r\n    <section class=\"demo-section\">\r\n      <h2>Buttons</h2>\r\n      <div class=\"button-group\">\r\n        <lib-button\r\n          label=\"Primary\"\r\n          variant=\"primary\"\r\n          (onClick)=\"handleButtonClick('primary')\"\r\n        />\r\n        <lib-button\r\n          label=\"Secondary\"\r\n          variant=\"secondary\"\r\n          (onClick)=\"handleButtonClick('secondary')\"\r\n        />\r\n        <lib-button\r\n          label=\"Danger\"\r\n          variant=\"danger\"\r\n          (onClick)=\"handleButtonClick('danger')\"\r\n        />\r\n        <lib-button\r\n          label=\"Success\"\r\n          variant=\"success\"\r\n          (onClick)=\"handleButtonClick('success')\"\r\n        />\r\n      </div>\r\n\r\n      <h3>Button Sizes</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button label=\"Small\" size=\"small\" />\r\n        <lib-button label=\"Medium\" size=\"medium\" />\r\n        <lib-button label=\"Large\" size=\"large\" />\r\n      </div>\r\n\r\n      <h3>Disabled State</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button label=\"Disabled\" [disabled]=\"true\" />\r\n      </div>\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Alerts</h2>\r\n      @if (showSuccessAlert()) {\r\n        <lib-alert\r\n          type=\"success\"\r\n          title=\"Success!\"\r\n          message=\"Your operation completed successfully.\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('success')\"\r\n        />\r\n      }\r\n\r\n      <lib-alert\r\n        type=\"info\"\r\n        title=\"Information\"\r\n        message=\"This is an informational message.\"\r\n      />\r\n\r\n      <lib-alert\r\n        type=\"warning\"\r\n        title=\"Warning\"\r\n        message=\"Please be aware of this warning.\"\r\n        [dismissible]=\"true\"\r\n      />\r\n\r\n      @if (showErrorAlert()) {\r\n        <lib-alert\r\n          type=\"error\"\r\n          title=\"Error\"\r\n          message=\"An error occurred during the operation.\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('error')\"\r\n        />\r\n      }\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Cards</h2>\r\n      <div class=\"card-grid\">\r\n        <lib-card\r\n          title=\"Simple Card\"\r\n          subtitle=\"Basic card with title and subtitle\"\r\n        >\r\n          <p>This is the card body content. You can put any content here using ng-content.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          title=\"Elevated Card\"\r\n          subtitle=\"Card with elevated appearance\"\r\n          [elevated]=\"true\"\r\n        >\r\n          <p>This card has an elevated style for emphasis.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          title=\"Card with Image\"\r\n          subtitle=\"Card featuring an image\"\r\n          imageUrl=\"https://via.placeholder.com/400x200\"\r\n        >\r\n          <p>Cards can display images at the top.</p>\r\n        </lib-card>\r\n      </div>\r\n    </section>\r\n  </main>\r\n\r\n  <footer class=\"demo-footer\">\r\n    <p>Built with Angular {{ '21' }} and UI Components Library</p>\r\n  </footer>\r\n</div>\r\n"
+            "templateData": "<div class=\"demo-container\">\r\n  <header class=\"demo-header\">\r\n    <h1>{{ title() }}</h1>\r\n    <p>Demonstration of the UI Components Library</p>\r\n  </header>\r\n\r\n  <main class=\"demo-content\">\r\n    <section class=\"demo-section\">\r\n      <h2>Buttons</h2>\r\n      <div class=\"button-group\">\r\n        <lib-button\r\n          [label]=\"'Primary'\"\r\n          [variant]=\"'primary'\"\r\n          (onClick)=\"handleButtonClick('primary')\"\r\n        />\r\n        <lib-button\r\n          [label]=\"'Secondary'\"\r\n          [variant]=\"'secondary'\"\r\n          (onClick)=\"handleButtonClick('secondary')\"\r\n        />\r\n        <lib-button\r\n          [label]=\"'Danger'\"\r\n          [variant]=\"'danger'\"\r\n          (onClick)=\"handleButtonClick('danger')\"\r\n        />\r\n        <lib-button\r\n          [label]=\"'Success'\"\r\n          [variant]=\"'success'\"\r\n          (onClick)=\"handleButtonClick('success')\"\r\n        />\r\n      </div>\r\n\r\n      <h3>Button Sizes</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button [label]=\"'Small'\" [size]=\"'small'\" />\r\n        <lib-button [label]=\"'Medium'\" [size]=\"'medium'\" />\r\n        <lib-button [label]=\"'Large'\" [size]=\"'large'\" />\r\n      </div>\r\n\r\n      <h3>Disabled State</h3>\r\n      <div class=\"button-group\">\r\n        <lib-button [label]=\"'Disabled'\" [disabled]=\"true\" />\r\n      </div>\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Alerts</h2>\r\n      @if (showSuccessAlert()) {\r\n        <lib-alert\r\n          [type]=\"'success'\"\r\n          [title]=\"'Success!'\"\r\n          [message]=\"'Your operation completed successfully.'\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('success')\"\r\n        />\r\n      }\r\n\r\n      <lib-alert\r\n        [type]=\"'info'\"\r\n        [title]=\"'Information'\"\r\n        [message]=\"'This is an informational message.'\"\r\n      />\r\n\r\n      <lib-alert\r\n        [type]=\"'warning'\"\r\n        [title]=\"'Warning'\"\r\n        [message]=\"'Please be aware of this warning.'\"\r\n        [dismissible]=\"true\"\r\n      />\r\n\r\n      @if (showErrorAlert()) {\r\n        <lib-alert\r\n          [type]=\"'error'\"\r\n          [title]=\"'Error'\"\r\n          [message]=\"'An error occurred during the operation.'\"\r\n          [dismissible]=\"true\"\r\n          (onDismiss)=\"handleAlertDismiss('error')\"\r\n        />\r\n      }\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Input Fields (Reactive Forms)</h2>\r\n      <div class=\"form-group\">\r\n        <div class=\"form-field\">\r\n          <label>Username *</label>\r\n          <lib-input-text\r\n            [formControl]=\"userForm.controls.username\"\r\n            [placeholder]=\"'Enter your username'\"\r\n            [type]=\"'text'\"\r\n            [required]=\"true\"\r\n            [ariaLabel]=\"'Username input'\"\r\n          />\r\n          @if (userForm.controls.username.value) {\r\n            <small>Value: {{ userForm.controls.username.value }}</small>\r\n          }\r\n          @if (userForm.controls.username.invalid && userForm.controls.username.touched) {\r\n            <small class=\"error\">Username is required</small>\r\n          }\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Email *</label>\r\n          <lib-input-text\r\n            [formControl]=\"userForm.controls.email\"\r\n            [placeholder]=\"'Enter your email'\"\r\n            [type]=\"'email'\"\r\n            [required]=\"true\"\r\n            [ariaLabel]=\"'Email input'\"\r\n          />\r\n          @if (userForm.controls.email.value) {\r\n            <small>Value: {{ userForm.controls.email.value }}</small>\r\n          }\r\n          @if (userForm.controls.email.invalid && userForm.controls.email.touched) {\r\n            <small class=\"error\">Valid email is required</small>\r\n          }\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Password *</label>\r\n          <lib-input-text\r\n            [formControl]=\"userForm.controls.password\"\r\n            [placeholder]=\"'Enter your password'\"\r\n            [type]=\"'password'\"\r\n            [required]=\"true\"\r\n            [ariaLabel]=\"'Password input'\"\r\n          />\r\n          @if (userForm.controls.password.invalid && userForm.controls.password.touched) {\r\n            <small class=\"error\">Password must be at least 6 characters</small>\r\n          }\r\n        </div>\r\n\r\n        <h3>Input Sizes</h3>\r\n        <div class=\"form-field\">\r\n          <label>Small Input</label>\r\n          <lib-input-text\r\n            [placeholder]=\"'Small size'\"\r\n            [size]=\"'small'\"\r\n          />\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Medium Input</label>\r\n          <lib-input-text\r\n            [placeholder]=\"'Medium size (default)'\"\r\n            [size]=\"'medium'\"\r\n          />\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Large Input</label>\r\n          <lib-input-text\r\n            [placeholder]=\"'Large size'\"\r\n            [size]=\"'large'\"\r\n          />\r\n        </div>\r\n      </div>\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Select Dropdowns</h2>\r\n      <div class=\"form-group\">\r\n        <div class=\"form-field\">\r\n          <label>Country</label>\r\n          <lib-select\r\n            [(value)]=\"selectedCountry\"\r\n            [options]=\"countryOptions\"\r\n            [placeholder]=\"'Select your country'\"\r\n            [showClear]=\"true\"\r\n            [filter]=\"true\"\r\n            [ariaLabel]=\"'Country select'\"\r\n          />\r\n          @if (selectedCountry()) {\r\n            <small>Selected: {{ selectedCountry() }}</small>\r\n          }\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Role</label>\r\n          <lib-select\r\n            [(value)]=\"selectedRole\"\r\n            [options]=\"roleOptions\"\r\n            [placeholder]=\"'Select your role'\"\r\n            [showClear]=\"true\"\r\n            [ariaLabel]=\"'Role select'\"\r\n          />\r\n          @if (selectedRole()) {\r\n            <small>Selected: {{ selectedRole() }}</small>\r\n          }\r\n        </div>\r\n\r\n        <h3>Select Sizes</h3>\r\n        <div class=\"form-field\">\r\n          <label>Small Select</label>\r\n          <lib-select\r\n            [options]=\"roleOptions\"\r\n            [placeholder]=\"'Small size'\"\r\n            [size]=\"'small'\"\r\n          />\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Medium Select</label>\r\n          <lib-select\r\n            [options]=\"roleOptions\"\r\n            [placeholder]=\"'Medium size (default)'\"\r\n            [size]=\"'medium'\"\r\n          />\r\n        </div>\r\n\r\n        <div class=\"form-field\">\r\n          <label>Large Select</label>\r\n          <lib-select\r\n            [options]=\"roleOptions\"\r\n            [placeholder]=\"'Large size'\"\r\n            [size]=\"'large'\"\r\n          />\r\n        </div>\r\n\r\n        <div class=\"form-actions\">\r\n          <lib-button\r\n            [label]=\"'Submit Form'\"\r\n            [variant]=\"'success'\"\r\n            (onClick)=\"handleFormSubmit()\"\r\n          />\r\n        </div>\r\n      </div>\r\n    </section>\r\n\r\n    <section class=\"demo-section\">\r\n      <h2>Cards</h2>\r\n      <div class=\"card-grid\">\r\n        <lib-card\r\n          [title]=\"'Simple Card'\"\r\n          [subtitle]=\"'Basic card with title and subtitle'\"\r\n        >\r\n          <p>This is the card body content. You can put any content here using ng-content.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          [title]=\"'Elevated Card'\"\r\n          [subtitle]=\"'Card with elevated appearance'\"\r\n          [elevated]=\"true\"\r\n        >\r\n          <p>This card has an elevated style for emphasis.</p>\r\n        </lib-card>\r\n\r\n        <lib-card\r\n          [title]=\"'Card with Image'\"\r\n          [subtitle]=\"'Card featuring an image'\"\r\n          [imageUrl]=\"'https://via.placeholder.com/400x200'\"\r\n        >\r\n          <p>Cards can display images at the top.</p>\r\n        </lib-card>\r\n      </div>\r\n    </section>\r\n  </main>\r\n\r\n  <footer class=\"demo-footer\">\r\n    <p>Built with Angular {{ '21' }} and UI Components Library</p>\r\n  </footer>\r\n</div>\r\n"
         },
         {
             "name": "ButtonComponent",
@@ -806,6 +958,892 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<p-card\r\n  [header]=\"title()\"\r\n  [subheader]=\"subtitle()\"\r\n  [class]=\"elevated() ? 'elevated-card' : ''\"\r\n>\r\n  @if (imageUrl()) {\r\n    <ng-template pTemplate=\"header\">\r\n      <img [src]=\"imageUrl()\" [alt]=\"title() || 'Card image'\" style=\"width: 100%; display: block;\" />\r\n    </ng-template>\r\n  }\r\n  <ng-content></ng-content>\r\n</p-card>\r\n"
+        },
+        {
+            "name": "InputTextComponent",
+            "id": "component-InputTextComponent-de14d50ddaea70f54985c0d17b3896034663f6d4b2539ab3d0db0013012edeaa3c22473b3b50eb99882bc7fcad74c1a07316e71a16e9da315b4c5c2273a6cf85",
+            "file": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": ")"
+                }
+            ],
+            "selector": "lib-input-text",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./input-text.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "ariaLabel",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input ARIA label for accessibility</p>\n",
+                    "line": 43,
+                    "rawdescription": "\nInput ARIA label for accessibility",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether input is disabled</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nWhether input is disabled",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input placeholder text</p>\n",
+                    "line": 28,
+                    "rawdescription": "\nInput placeholder text",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether input is required</p>\n",
+                    "line": 40,
+                    "rawdescription": "\nWhether input is required",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "InputTextSize",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input size</p>\n",
+                    "line": 34,
+                    "rawdescription": "\nInput size",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "InputTextType",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Input type</p>\n",
+                    "line": 31,
+                    "rawdescription": "\nInput type",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "computedAriaLabel",
+                    "defaultValue": "computed<string>(() => {\r\n    return this.ariaLabel() || this.placeholder() || 'Text input';\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Computed ARIA label with fallback to placeholder</p>\n",
+                    "line": 66,
+                    "rawdescription": "\n\nComputed ARIA label with fallback to placeholder\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1926,
+                            "end": 1940,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1927,
+                                "end": 1935,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46,
+                    "rawdescription": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1433,
+                            "end": 1443,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1434,
+                                "end": 1442,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 49,
+                    "rawdescription": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1512,
+                            "end": 1522,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1513,
+                                "end": 1521,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "sizeClass",
+                    "defaultValue": "computed<string>(() => {\r\n    const size = this.size();\r\n    if (size === 'small') return 'p-inputtext-sm';\r\n    if (size === 'large') return 'p-inputtext-lg';\r\n    return '';\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Map size to PrimeNG size class</p>\n",
+                    "line": 55,
+                    "rawdescription": "\n\nMap size to PrimeNG size class\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1622,
+                            "end": 1636,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1623,
+                                "end": 1631,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "signal<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The input value</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nThe input value",
+                    "modifierKind": [
+                        124,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHandle input blur event\n",
+                    "description": "<p>Handle input blur event</p>\n",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": []
+                },
+                {
+                    "name": "handleInputChange",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 75,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHandle input change event\n",
+                    "description": "<p>Handle input change event</p>\n",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2139,
+                                "end": 2144,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "value"
+                            },
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 2133,
+                                "end": 2138,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>The new input value</li>\n</ul>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "optional": false,
+                                    "dotDotDotToken": false,
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nRegister a callback function for value changes\n",
+                    "description": "<p>Register a callback function for value changes</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2715,
+                                "end": 2717,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "fn"
+                            },
+                            "type": "function",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "optional": false,
+                                    "dotDotDotToken": false,
+                                    "deprecated": false,
+                                    "deprecationMessage": ""
+                                }
+                            ],
+                            "tagName": {
+                                "pos": 2709,
+                                "end": 2714,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>The callback function</li>\n</ul>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": []
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 110,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nRegister a callback function for touch events\n",
+                    "description": "<p>Register a callback function for touch events</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2910,
+                                "end": 2912,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "fn"
+                            },
+                            "type": "function",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [],
+                            "tagName": {
+                                "pos": 2904,
+                                "end": 2909,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>The callback function</li>\n</ul>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "_isDisabled",
+                            "type": "boolean",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 118,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nSet the disabled state\n",
+                    "description": "<p>Set the disabled state</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 3071,
+                                "end": 3082,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "_isDisabled"
+                            },
+                            "type": "boolean",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 3065,
+                                "end": 3070,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>Whether the component should be disabled (unused - handled via input signal)</li>\n</ul>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWrite a new value to the component\n",
+                    "description": "<p>Write a new value to the component</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 2535,
+                                "end": 2540,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "value"
+                            },
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 2529,
+                                "end": 2534,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>The new value</li>\n</ul>\n"
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "InputTextModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, signal, forwardRef } from '@angular/core';\r\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';\r\nimport { InputTextModule } from 'primeng/inputtext';\r\n\r\nexport type InputTextType = 'text' | 'password' | 'email' | 'tel' | 'url' | 'number';\r\nexport type InputTextSize = 'small' | 'medium' | 'large';\r\n\r\n@Component({\r\n  selector: 'lib-input-text',\r\n  standalone: true,\r\n  imports: [InputTextModule, ReactiveFormsModule],\r\n  templateUrl: './input-text.html',\r\n  styleUrl: './input-text.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: forwardRef(() => InputTextComponent),\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class InputTextComponent implements ControlValueAccessor {\r\n  /** The input value */\r\n  protected readonly value = signal<string>('');\r\n\r\n  /** Input placeholder text */\r\n  readonly placeholder = input<string>('');\r\n\r\n  /** Input type */\r\n  readonly type = input<InputTextType>('text');\r\n\r\n  /** Input size */\r\n  readonly size = input<InputTextSize>('medium');\r\n\r\n  /** Whether input is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Whether input is required */\r\n  readonly required = input<boolean>(false);\r\n\r\n  /** Input ARIA label for accessibility */\r\n  readonly ariaLabel = input<string>('');\r\n\r\n  /** @internal */\r\n  private onChange: (value: string) => void = () => {};\r\n\r\n  /** @internal */\r\n  private onTouched: () => void = () => {};\r\n\r\n  /**\r\n   * Map size to PrimeNG size class\r\n   * @internal\r\n   */\r\n  protected readonly sizeClass = computed<string>(() => {\r\n    const size = this.size();\r\n    if (size === 'small') return 'p-inputtext-sm';\r\n    if (size === 'large') return 'p-inputtext-lg';\r\n    return '';\r\n  });\r\n\r\n  /**\r\n   * Computed ARIA label with fallback to placeholder\r\n   * @internal\r\n   */\r\n  protected readonly computedAriaLabel = computed<string>(() => {\r\n    return this.ariaLabel() || this.placeholder() || 'Text input';\r\n  });\r\n\r\n  /**\r\n   * Handle input change event\r\n   * @param value - The new input value\r\n   * @internal\r\n   */\r\n  protected handleInputChange(value: string): void {\r\n    this.value.set(value);\r\n    this.onChange(value);\r\n  }\r\n\r\n  /**\r\n   * Handle input blur event\r\n   * @internal\r\n   */\r\n  protected handleBlur(): void {\r\n    this.onTouched();\r\n  }\r\n\r\n  // ControlValueAccessor implementation\r\n\r\n  /**\r\n   * Write a new value to the component\r\n   * @param value - The new value\r\n   */\r\n  writeValue(value: string): void {\r\n    this.value.set(value || '');\r\n  }\r\n\r\n  /**\r\n   * Register a callback function for value changes\r\n   * @param fn - The callback function\r\n   */\r\n  registerOnChange(fn: (value: string) => void): void {\r\n    this.onChange = fn;\r\n  }\r\n\r\n  /**\r\n   * Register a callback function for touch events\r\n   * @param fn - The callback function\r\n   */\r\n  registerOnTouched(fn: () => void): void {\r\n    this.onTouched = fn;\r\n  }\r\n\r\n  /**\r\n   * Set the disabled state\r\n   * @param _isDisabled - Whether the component should be disabled (unused - handled via input signal)\r\n   */\r\n  setDisabledState(_isDisabled: boolean): void {\r\n    // Disabled state is handled via input signal\r\n    // This method is here for ControlValueAccessor compatibility\r\n  }\r\n}\r\n",
+            "styleUrl": "./input-text.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "templateData": "<input\r\n  pInputText\r\n  [type]=\"type()\"\r\n  [value]=\"value()\"\r\n  (input)=\"handleInputChange($any($event.target).value)\"\r\n  (blur)=\"handleBlur()\"\r\n  [placeholder]=\"placeholder()\"\r\n  [disabled]=\"disabled()\"\r\n  [required]=\"required()\"\r\n  [class]=\"sizeClass()\"\r\n  [attr.aria-label]=\"computedAriaLabel()\"\r\n/>\r\n"
+        },
+        {
+            "name": "SelectComponent",
+            "id": "component-SelectComponent-06fb9ef5b3fa02859a112e38ab5aac8167470d8d826a1d92f58b3d2c2c4509f1baf201d1c4711742621831ab46ffe4a361081b70c9539130e131ae2bf5e2a6f9",
+            "file": "projects/demo-app/src/shared/ui-components/select/select.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "lib-select",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./select.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "ariaLabel",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Select ARIA label for accessibility</p>\n",
+                    "line": 51,
+                    "rawdescription": "\nSelect ARIA label for accessibility",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether select is disabled</p>\n",
+                    "line": 39,
+                    "rawdescription": "\nWhether select is disabled",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "filter",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether to enable filtering/search</p>\n",
+                    "line": 48,
+                    "rawdescription": "\nWhether to enable filtering/search",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "options",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SelectOption<T>[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Array of options to display</p>\n",
+                    "line": 30,
+                    "rawdescription": "\nArray of options to display",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "'Select an option'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Placeholder text when no value is selected</p>\n",
+                    "line": 33,
+                    "rawdescription": "\nPlaceholder text when no value is selected",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether select is required</p>\n",
+                    "line": 42,
+                    "rawdescription": "\nWhether select is required",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "showClear",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Whether to show a clear button</p>\n",
+                    "line": 45,
+                    "rawdescription": "\nWhether to show a clear button",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SelectSize",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Select size</p>\n",
+                    "line": 36,
+                    "rawdescription": "\nSelect size",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The selected value (two-way binding)</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nThe selected value (two-way binding)",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "value",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>The selected value (two-way binding)</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nThe selected value (two-way binding)",
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": false
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "computedAriaLabel",
+                    "defaultValue": "computed<string>(() => {\r\n    return this.ariaLabel() || this.placeholder() || 'Select dropdown';\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Computed ARIA label with fallback to placeholder</p>\n",
+                    "line": 68,
+                    "rawdescription": "\n\nComputed ARIA label with fallback to placeholder\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1941,
+                            "end": 1955,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1942,
+                                "end": 1950,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "sizeClass",
+                    "defaultValue": "computed<string>(() => {\r\n    const size = this.size();\r\n    if (size === 'small') return 'p-select-sm';\r\n    if (size === 'large') return 'p-select-lg';\r\n    return '';\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Map size to PrimeNG size class</p>\n",
+                    "line": 57,
+                    "rawdescription": "\n\nMap size to PrimeNG size class\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1643,
+                            "end": 1657,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1644,
+                                "end": 1652,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "SelectModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';\r\nimport { SelectModule } from 'primeng/select';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\nexport type SelectSize = 'small' | 'medium' | 'large';\r\n\r\n/** Option interface for select dropdown */\r\nexport interface SelectOption<T = string> {\r\n  /** Display label for the option */\r\n  label: string;\r\n  /** Value of the option */\r\n  value: T;\r\n  /** Whether the option is disabled */\r\n  disabled?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'lib-select',\r\n  standalone: true,\r\n  imports: [SelectModule, FormsModule],\r\n  templateUrl: './select.html',\r\n  styleUrl: './select.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class SelectComponent<T = string> {\r\n  /** The selected value (two-way binding) */\r\n  readonly value = model<T | null>(null);\r\n\r\n  /** Array of options to display */\r\n  readonly options = input.required<SelectOption<T>[]>();\r\n\r\n  /** Placeholder text when no value is selected */\r\n  readonly placeholder = input<string>('Select an option');\r\n\r\n  /** Select size */\r\n  readonly size = input<SelectSize>('medium');\r\n\r\n  /** Whether select is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Whether select is required */\r\n  readonly required = input<boolean>(false);\r\n\r\n  /** Whether to show a clear button */\r\n  readonly showClear = input<boolean>(false);\r\n\r\n  /** Whether to enable filtering/search */\r\n  readonly filter = input<boolean>(false);\r\n\r\n  /** Select ARIA label for accessibility */\r\n  readonly ariaLabel = input<string>('');\r\n\r\n  /**\r\n   * Map size to PrimeNG size class\r\n   * @internal\r\n   */\r\n  protected readonly sizeClass = computed<string>(() => {\r\n    const size = this.size();\r\n    if (size === 'small') return 'p-select-sm';\r\n    if (size === 'large') return 'p-select-lg';\r\n    return '';\r\n  });\r\n\r\n  /**\r\n   * Computed ARIA label with fallback to placeholder\r\n   * @internal\r\n   */\r\n  protected readonly computedAriaLabel = computed<string>(() => {\r\n    return this.ariaLabel() || this.placeholder() || 'Select dropdown';\r\n  });\r\n}\r\n",
+            "styleUrl": "./select.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p-select\r\n  [(ngModel)]=\"value\"\r\n  [options]=\"options()\"\r\n  optionLabel=\"label\"\r\n  optionValue=\"value\"\r\n  optionDisabled=\"disabled\"\r\n  [placeholder]=\"placeholder()\"\r\n  [disabled]=\"disabled()\"\r\n  [required]=\"required()\"\r\n  [showClear]=\"showClear()\"\r\n  [filter]=\"filter()\"\r\n  [class]=\"sizeClass()\"\r\n  [attr.aria-label]=\"computedAriaLabel()\"\r\n/>\r\n"
         }
     ],
     "modules": [],
@@ -819,7 +1857,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    \r\n  ]\r\n}"
+                "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
             }
         ],
         "functions": [],
@@ -856,6 +1894,39 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 193
+            },
+            {
+                "name": "InputTextSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\"",
+                "file": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "InputTextType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"text\" | \"password\" | \"email\" | \"tel\" | \"url\" | \"number\"",
+                "file": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "SelectSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\"",
+                "file": "projects/demo-app/src/shared/ui-components/select/select.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
             }
         ],
         "enumerations": [],
@@ -869,7 +1940,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    \r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  providers: [\r\n    provideBrowserGlobalErrorListeners(),\r\n    provideAnimationsAsync(),\r\n    providePrimeNG({\r\n      theme: {\r\n        preset: Aura,\r\n        options: {\r\n          darkModeSelector: false\r\n        }\r\n      }\r\n    })\r\n  ]\r\n}"
                 }
             ]
         },
@@ -912,6 +1983,43 @@
                     "description": "",
                     "kind": 193
                 }
+            ],
+            "projects/demo-app/src/shared/ui-components/input-text/input-text.ts": [
+                {
+                    "name": "InputTextSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\"",
+                    "file": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "InputTextType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"text\" | \"password\" | \"email\" | \"tel\" | \"url\" | \"number\"",
+                    "file": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
+            ],
+            "projects/demo-app/src/shared/ui-components/select/select.ts": [
+                {
+                    "name": "SelectSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\"",
+                    "file": "projects/demo-app/src/shared/ui-components/select/select.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
             ]
         }
     },
@@ -921,7 +2029,7 @@
         "children": []
     },
     "coverage": {
-        "count": 32,
+        "count": 38,
         "status": "medium",
         "files": [
             {
@@ -938,9 +2046,9 @@
                 "filePath": "projects/demo-app/src/app/app.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "App",
+                "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
@@ -999,6 +2107,63 @@
                 "coveragePercent": 80,
                 "coverageCount": "4/5",
                 "status": "very-good"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputTextComponent",
+                "coveragePercent": 83,
+                "coverageCount": "15/18",
+                "status": "very-good"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "InputTextSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/input-text/input-text.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "InputTextType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/select/select.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SelectComponent",
+                "coveragePercent": 92,
+                "coverageCount": "12/13",
+                "status": "very-good"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/select/select.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SelectOption",
+                "coveragePercent": 100,
+                "coverageCount": "4/4",
+                "status": "very-good"
+            },
+            {
+                "filePath": "projects/demo-app/src/shared/ui-components/select/select.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "SelectSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             }
         ]
     }
