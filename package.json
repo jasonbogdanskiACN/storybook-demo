@@ -15,7 +15,10 @@
     "dev:demo": "npm run start:demo",
     "playwright": "playwright-cli",
     "playwright:help": "playwright-cli --help",
-    "playwright:open": "playwright-cli open"
+    "playwright:open": "playwright-cli open",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
   },
   "prettier": {
     "printWidth": 100,
@@ -27,6 +30,14 @@
           "parser": "angular"
         }
       }
+    ]
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix"
+    ],
+    "*.html": [
+      "eslint --fix"
     ]
   },
   "private": true,
@@ -48,6 +59,9 @@
     "@angular-devkit/architect": "^0.2101.0",
     "@angular-devkit/build-angular": "^21.1.0",
     "@angular-devkit/core": "^21.1.0",
+    "@angular-eslint/eslint-plugin": "^21.2.0",
+    "@angular-eslint/eslint-plugin-template": "^21.2.0",
+    "@angular-eslint/template-parser": "^21.2.0",
     "@angular/build": "^21.1.4",
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
@@ -58,7 +72,12 @@
     "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-onboarding": "^10.2.8",
     "@storybook/angular": "^10.2.8",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
+    "lint-staged": "^16.2.7",
     "ng-packagr": "^21.1.0",
     "storybook": "^10.2.8",
     "typescript": "~5.9.2",
