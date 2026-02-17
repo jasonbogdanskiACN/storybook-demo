@@ -12,7 +12,10 @@
     "build:demo": "ng build demo-app",
     "test:demo": "ng test demo-app",
     "dev": "npm run storybook",
-    "dev:demo": "npm run start:demo"
+    "dev:demo": "npm run start:demo",
+    "playwright": "playwright-cli",
+    "playwright:help": "playwright-cli --help",
+    "playwright:open": "playwright-cli open"
   },
   "prettier": {
     "printWidth": 100,
@@ -50,6 +53,7 @@
     "@angular/compiler-cli": "^21.1.0",
     "@angular/platform-browser-dynamic": "^21.1.0",
     "@compodoc/compodoc": "^1.2.1",
+    "@playwright/cli": "^0.1.1",
     "@storybook/addon-a11y": "^10.2.8",
     "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-onboarding": "^10.2.8",
