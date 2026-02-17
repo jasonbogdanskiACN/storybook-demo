@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'lib-card',
   standalone: true,
+  imports: [CardModule],
   templateUrl: './card.html',
   styleUrl: './card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

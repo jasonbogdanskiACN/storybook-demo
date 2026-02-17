@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { MessageModule } from 'primeng/message';
 
 export type AlertType = 'info' | 'success' | 'warning' | 'error';
 
 @Component({
   selector: 'lib-alert',
   standalone: true,
+  imports: [MessageModule],
   templateUrl: './alert.html',
   styleUrl: './alert.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,17 +31,30 @@ export class AlertComponent {
   protected readonly dismissed = signal<boolean>(false);
 
   /**
-   * Computed icon based on alert type
+   * Map alert type to PrimeNG severity
+   * @internal
    */
-  protected readonly icon = computed<string>(() => {
-    const icons: Record<AlertType, string> = {
-      info: 'ℹ️',
-      success: '✅',
-      warning: '⚠️',
-      error: '❌'
+  protected readonly severity = computed<'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast'>(() => {
+    const typeMap: Record<AlertType, 'success' | 'info' | 'warn' | 'error'> = {
+      info: 'info',
+      success: 'success',
+      warning: 'warn',
+      error: 'error'
     };
-    return icons[this.type()];
+    return typeMap[this.type()];
   });
+
+  /**
+   * Computed message summary (combines title and message)
+   * @internal
+   */
+  protected readonly summary = computed<string>(() => this.title() || this.type().charAt(0).toUpperCase() + this.type().slice(1));
+
+  /**
+   * Computed message detail
+   * @internal
+   */
+  protected readonly detail = computed<string>(() => this.message());
 
   /**
    * Dismiss the alert

@@ -1,8 +1,8 @@
-<button
-  [class]="'btn btn-' + variant() + ' btn-' + size()"
+<p-button
+  [label]="label()"
+  [severity]="severity()"
+  [size]="primeSize()"
   [disabled]="disabled()"
   [attr.aria-label]="label()"
-  (click)="handleClick($event)"
->
-  {{ label() }}
-</button>
+  (onClick)="handleClick($event)"
+/>

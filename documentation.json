@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "AlertComponent",
-            "id": "component-AlertComponent-5bf4c8d1a1170082b9ae45f1444659e9310a23b360851d13475bc75250c6d676996638509b887f8f3f408f91af924179a0bc9af017bbe4071e1ff44d489b362f",
+            "id": "component-AlertComponent-a0ed577e24006d27fbfa14267dc88538b809161cd819b3d7a68e2d2270e2d11acfc168d5c614169dd07b281d9496acb8aafaf1f4e34ca89a9093382d39ccfdbd",
             "file": "projects/demo-app/src/shared/ui-components/alert/alert.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -35,7 +35,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Whether the alert can be dismissed by the user</p>\n",
-                    "line": 23,
+                    "line": 25,
                     "rawdescription": "\nWhether the alert can be dismissed by the user",
                     "modifierKind": [
                         148
@@ -51,7 +51,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Alert message text</p>\n",
-                    "line": 20,
+                    "line": 22,
                     "rawdescription": "\nAlert message text",
                     "modifierKind": [
                         148
@@ -67,7 +67,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Alert title text</p>\n",
-                    "line": 17,
+                    "line": 19,
                     "rawdescription": "\nAlert title text",
                     "modifierKind": [
                         148
@@ -83,7 +83,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Alert type determines the color and icon</p>\n",
-                    "line": 14,
+                    "line": 16,
                     "rawdescription": "\nAlert type determines the color and icon",
                     "modifierKind": [
                         148
@@ -100,7 +100,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Emitted when the alert is dismissed</p>\n",
-                    "line": 26,
+                    "line": 28,
                     "rawdescription": "\nEmitted when the alert is dismissed",
                     "modifierKind": [
                         148
@@ -110,6 +110,43 @@
             ],
             "propertiesClass": [
                 {
+                    "name": "detail",
+                    "defaultValue": "computed<string>(() => this.message())",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Computed message detail</p>\n",
+                    "line": 57,
+                    "rawdescription": "\n\nComputed message detail\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1696,
+                            "end": 1710,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1697,
+                                "end": 1705,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
                     "name": "dismissed",
                     "defaultValue": "signal<boolean>(false)",
                     "deprecated": false,
@@ -118,7 +155,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Internal state tracking if alert has been dismissed</p>\n",
-                    "line": 29,
+                    "line": 31,
                     "rawdescription": "\nInternal state tracking if alert has been dismissed",
                     "modifierKind": [
                         124,
@@ -126,19 +163,77 @@
                     ]
                 },
                 {
-                    "name": "icon",
-                    "defaultValue": "computed<string>(() => {\r\n    const icons: Record<AlertType, string> = {\r\n      info: 'ℹ️',\r\n      success: '✅',\r\n      warning: '⚠️',\r\n      error: '❌'\r\n    };\r\n    return icons[this.type()];\r\n  })",
+                    "name": "severity",
+                    "defaultValue": "computed<'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast'>(() => {\r\n    const typeMap: Record<AlertType, 'success' | 'info' | 'warn' | 'error'> = {\r\n      info: 'info',\r\n      success: 'success',\r\n      warning: 'warn',\r\n      error: 'error'\r\n    };\r\n    return typeMap[this.type()];\r\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "unknown",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Computed icon based on alert type</p>\n",
-                    "line": 34,
-                    "rawdescription": "\n\nComputed icon based on alert type\n",
+                    "description": "<p>Map alert type to PrimeNG severity</p>\n",
+                    "line": 37,
+                    "rawdescription": "\n\nMap alert type to PrimeNG severity\n",
                     "modifierKind": [
                         124,
                         148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1070,
+                            "end": 1084,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1071,
+                                "end": 1079,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "summary",
+                    "defaultValue": "computed<string>(() => this.title() || this.type().charAt(0).toUpperCase() + this.type().slice(1))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Computed message summary (combines title and message)</p>\n",
+                    "line": 51,
+                    "rawdescription": "\n\nComputed message summary (combines title and message)\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1502,
+                            "end": 1516,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1503,
+                                "end": 1511,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
                     ]
                 }
             ],
@@ -149,7 +244,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nDismiss the alert\n",
@@ -165,17 +260,22 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "MessageModule",
+                    "type": "module"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';\r\n\r\nexport type AlertType = 'info' | 'success' | 'warning' | 'error';\r\n\r\n@Component({\r\n  selector: 'lib-alert',\r\n  standalone: true,\r\n  templateUrl: './alert.html',\r\n  styleUrl: './alert.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AlertComponent {\r\n  /** Alert type determines the color and icon */\r\n  readonly type = input<AlertType>('info');\r\n\r\n  /** Alert title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Alert message text */\r\n  readonly message = input<string>('');\r\n\r\n  /** Whether the alert can be dismissed by the user */\r\n  readonly dismissible = input<boolean>(false);\r\n\r\n  /** Emitted when the alert is dismissed */\r\n  readonly onDismiss = output<void>();\r\n\r\n  /** Internal state tracking if alert has been dismissed */\r\n  protected readonly dismissed = signal<boolean>(false);\r\n\r\n  /**\r\n   * Computed icon based on alert type\r\n   */\r\n  protected readonly icon = computed<string>(() => {\r\n    const icons: Record<AlertType, string> = {\r\n      info: 'ℹ️',\r\n      success: '✅',\r\n      warning: '⚠️',\r\n      error: '❌'\r\n    };\r\n    return icons[this.type()];\r\n  });\r\n\r\n  /**\r\n   * Dismiss the alert\r\n   * @internal\r\n   */\r\n  protected dismiss(): void {\r\n    this.dismissed.set(true);\r\n    this.onDismiss.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';\r\nimport { MessageModule } from 'primeng/message';\r\n\r\nexport type AlertType = 'info' | 'success' | 'warning' | 'error';\r\n\r\n@Component({\r\n  selector: 'lib-alert',\r\n  standalone: true,\r\n  imports: [MessageModule],\r\n  templateUrl: './alert.html',\r\n  styleUrl: './alert.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class AlertComponent {\r\n  /** Alert type determines the color and icon */\r\n  readonly type = input<AlertType>('info');\r\n\r\n  /** Alert title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Alert message text */\r\n  readonly message = input<string>('');\r\n\r\n  /** Whether the alert can be dismissed by the user */\r\n  readonly dismissible = input<boolean>(false);\r\n\r\n  /** Emitted when the alert is dismissed */\r\n  readonly onDismiss = output<void>();\r\n\r\n  /** Internal state tracking if alert has been dismissed */\r\n  protected readonly dismissed = signal<boolean>(false);\r\n\r\n  /**\r\n   * Map alert type to PrimeNG severity\r\n   * @internal\r\n   */\r\n  protected readonly severity = computed<'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast'>(() => {\r\n    const typeMap: Record<AlertType, 'success' | 'info' | 'warn' | 'error'> = {\r\n      info: 'info',\r\n      success: 'success',\r\n      warning: 'warn',\r\n      error: 'error'\r\n    };\r\n    return typeMap[this.type()];\r\n  });\r\n\r\n  /**\r\n   * Computed message summary (combines title and message)\r\n   * @internal\r\n   */\r\n  protected readonly summary = computed<string>(() => this.title() || this.type().charAt(0).toUpperCase() + this.type().slice(1));\r\n\r\n  /**\r\n   * Computed message detail\r\n   * @internal\r\n   */\r\n  protected readonly detail = computed<string>(() => this.message());\r\n\r\n  /**\r\n   * Dismiss the alert\r\n   * @internal\r\n   */\r\n  protected dismiss(): void {\r\n    this.dismissed.set(true);\r\n    this.onDismiss.emit();\r\n  }\r\n}\r\n",
             "styleUrl": "./alert.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "@if (!dismissed()) {\r\n  <div [class]=\"'alert alert-' + type()\">\r\n    <div class=\"alert-content\">\r\n      <span class=\"alert-icon\" aria-label=\"Alert icon\">{{ icon() }}</span>\r\n      <div class=\"alert-text\">\r\n        @if (title()) {\r\n          <h4 class=\"alert-title\">{{ title() }}</h4>\r\n        }\r\n        <p class=\"alert-message\">{{ message() }}</p>\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n    @if (dismissible()) {\r\n      <button class=\"alert-dismiss\" (click)=\"dismiss()\" aria-label=\"Dismiss alert\">\r\n        ×\r\n      </button>\r\n    }\r\n  </div>\r\n}\r\n"
+            "templateData": "@if (!dismissed()) {\r\n  <div style=\"position: relative;\">\r\n    <p-message\r\n      [severity]=\"severity()\"\r\n    >\r\n      <ng-template pTemplate=\"headless\">\r\n        <div class=\"p-message-wrapper\" style=\"padding: 1rem; display: flex; align-items: start; gap: 0.75rem;\">\r\n          <i [class]=\"'pi ' + (severity() === 'success' ? 'pi-check-circle' : severity() === 'info' ? 'pi-info-circle' : severity() === 'warn' ? 'pi-exclamation-triangle' : 'pi-times-circle')\" style=\"font-size: 1.25rem;\"></i>\r\n          <div style=\"flex: 1;\">\r\n            @if (title()) {\r\n              <h4 style=\"margin: 0 0 0.5rem 0; font-weight: 600;\">{{ title() }}</h4>\r\n            }\r\n            @if (message()) {\r\n              <p style=\"margin: 0;\">{{ message() }}</p>\r\n            }\r\n            <ng-content></ng-content>\r\n          </div>\r\n          @if (dismissible()) {\r\n            <button\r\n              type=\"button\"\r\n              class=\"p-message-close-button\"\r\n              (click)=\"dismiss()\"\r\n              aria-label=\"Dismiss alert\"\r\n              style=\"background: transparent; border: none; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center;\"\r\n            >\r\n              <i class=\"pi pi-times\" style=\"font-size: 1rem;\"></i>\r\n            </button>\r\n          }\r\n        </div>\r\n      </ng-template>\r\n    </p-message>\r\n  </div>\r\n}\r\n"
         },
         {
             "name": "App",
@@ -347,7 +447,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-496d7491caad0742eb155bd2309215661e405a32dd30a417224a377fe4f568440d3865df805fb98cc16bccb5d585d4bab4036413bc69ea66841879214181d757",
+            "id": "component-ButtonComponent-58e028335cdaf1cd1d3cc68819105549959e1d944280832a7b1f0bbd0a77b941792c82c6001c2a64ba1b75bf430b27eee1f5f3cd71b46ed76c959028438fdd6e",
             "file": "projects/demo-app/src/shared/ui-components/button/button.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -373,7 +473,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Whether button is disabled</p>\n",
-                    "line": 24,
+                    "line": 26,
                     "rawdescription": "\nWhether button is disabled",
                     "modifierKind": [
                         148
@@ -389,7 +489,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button text label</p>\n",
-                    "line": 15,
+                    "line": 17,
                     "rawdescription": "\nButton text label",
                     "modifierKind": [
                         148
@@ -405,7 +505,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button size</p>\n",
-                    "line": 21,
+                    "line": 23,
                     "rawdescription": "\nButton size",
                     "modifierKind": [
                         148
@@ -421,7 +521,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Button visual variant</p>\n",
-                    "line": 18,
+                    "line": 20,
                     "rawdescription": "\nButton visual variant",
                     "modifierKind": [
                         148
@@ -438,7 +538,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Emitted when button is clicked</p>\n",
-                    "line": 27,
+                    "line": 29,
                     "rawdescription": "\nEmitted when button is clicked",
                     "modifierKind": [
                         148
@@ -446,7 +546,82 @@
                     "required": false
                 }
             ],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "primeSize",
+                    "defaultValue": "computed<'small' | 'large' | undefined>(() => {\r\n    const size = this.size();\r\n    return size === 'medium' ? undefined : size;\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Map size to PrimeNG size (medium maps to undefined/default)</p>\n",
+                    "line": 49,
+                    "rawdescription": "\n\nMap size to PrimeNG size (medium maps to undefined/default)\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 1464,
+                            "end": 1478,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 1465,
+                                "end": 1473,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "severity",
+                    "defaultValue": "computed<'success' | 'info' | 'warn' | 'danger' | 'help' | 'secondary' | 'contrast' | undefined>(() => {\r\n    const variantMap: Record<ButtonVariant, 'success' | 'info' | 'danger' | 'secondary'> = {\r\n      primary: 'info',\r\n      secondary: 'secondary',\r\n      danger: 'danger',\r\n      success: 'success'\r\n    };\r\n    return variantMap[this.variant()];\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Map variant to PrimeNG severity</p>\n",
+                    "line": 35,
+                    "rawdescription": "\n\nMap variant to PrimeNG severity\n",
+                    "modifierKind": [
+                        124,
+                        148
+                    ],
+                    "jsdoctags": [
+                        {
+                            "pos": 973,
+                            "end": 987,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 974,
+                                "end": 982,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "internal"
+                            },
+                            "comment": ""
+                        }
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "handleClick",
@@ -463,7 +638,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 59,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nHandle button click event\n",
@@ -474,8 +649,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 888,
-                                "end": 893,
+                                "pos": 1705,
+                                "end": 1710,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -488,8 +663,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 882,
-                                "end": 887,
+                                "pos": 1699,
+                                "end": 1704,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -506,21 +681,26 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "ButtonModule",
+                    "type": "module"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';\r\n\r\nexport type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';\r\nexport type ButtonSize = 'small' | 'medium' | 'large';\r\n\r\n@Component({\r\n  selector: 'lib-button',\r\n  standalone: true,\r\n  templateUrl: './button.html',\r\n  styleUrl: './button.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class ButtonComponent {\r\n  /** Button text label */\r\n  readonly label = input<string>('Button');\r\n\r\n  /** Button visual variant */\r\n  readonly variant = input<ButtonVariant>('primary');\r\n\r\n  /** Button size */\r\n  readonly size = input<ButtonSize>('medium');\r\n\r\n  /** Whether button is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Emitted when button is clicked */\r\n  readonly onClick = output<Event>();\r\n\r\n  /**\r\n   * Handle button click event\r\n   * @param event - The click event\r\n   * @internal\r\n   */\r\n  protected handleClick(event: Event): void {\r\n    if (!this.disabled()) {\r\n      this.onClick.emit(event);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';\r\nimport { ButtonModule } from 'primeng/button';\r\n\r\nexport type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';\r\nexport type ButtonSize = 'small' | 'medium' | 'large';\r\n\r\n@Component({\r\n  selector: 'lib-button',\r\n  standalone: true,\r\n  imports: [ButtonModule],\r\n  templateUrl: './button.html',\r\n  styleUrl: './button.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class ButtonComponent {\r\n  /** Button text label */\r\n  readonly label = input<string>('Button');\r\n\r\n  /** Button visual variant */\r\n  readonly variant = input<ButtonVariant>('primary');\r\n\r\n  /** Button size */\r\n  readonly size = input<ButtonSize>('medium');\r\n\r\n  /** Whether button is disabled */\r\n  readonly disabled = input<boolean>(false);\r\n\r\n  /** Emitted when button is clicked */\r\n  readonly onClick = output<Event>();\r\n\r\n  /**\r\n   * Map variant to PrimeNG severity\r\n   * @internal\r\n   */\r\n  protected readonly severity = computed<'success' | 'info' | 'warn' | 'danger' | 'help' | 'secondary' | 'contrast' | undefined>(() => {\r\n    const variantMap: Record<ButtonVariant, 'success' | 'info' | 'danger' | 'secondary'> = {\r\n      primary: 'info',\r\n      secondary: 'secondary',\r\n      danger: 'danger',\r\n      success: 'success'\r\n    };\r\n    return variantMap[this.variant()];\r\n  });\r\n\r\n  /**\r\n   * Map size to PrimeNG size (medium maps to undefined/default)\r\n   * @internal\r\n   */\r\n  protected readonly primeSize = computed<'small' | 'large' | undefined>(() => {\r\n    const size = this.size();\r\n    return size === 'medium' ? undefined : size;\r\n  });\r\n\r\n  /**\r\n   * Handle button click event\r\n   * @param event - The click event\r\n   * @internal\r\n   */\r\n  protected handleClick(event: Event): void {\r\n    if (!this.disabled()) {\r\n      this.onClick.emit(event);\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./button.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<button\r\n  [class]=\"'btn btn-' + variant() + ' btn-' + size()\"\r\n  [disabled]=\"disabled()\"\r\n  [attr.aria-label]=\"label()\"\r\n  (click)=\"handleClick($event)\"\r\n>\r\n  {{ label() }}\r\n</button>\r\n"
+            "templateData": "<p-button\r\n  [label]=\"label()\"\r\n  [severity]=\"severity()\"\r\n  [size]=\"primeSize()\"\r\n  [disabled]=\"disabled()\"\r\n  [attr.aria-label]=\"label()\"\r\n  (onClick)=\"handleClick($event)\"\r\n/>\r\n"
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-cf8b7cddbc6fc840d925890fa957f3adee97558bc9a60f2ee2bafc22db1e8f07a8e291a96c5519496e4e2a5571ed7590fc73f62f82ae319e16e5aa57b7dc24ed",
+            "id": "component-CardComponent-4a17cd8131d6312461ccc4e055ecc1924201966de87231756cd295d3c9092c5f1ee62d95abf74c4ac07344d2ef77770ac5ef34a9ed3aec01cbf991bb099ef0d9",
             "file": "projects/demo-app/src/shared/ui-components/card/card.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -546,7 +726,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Whether the card should have an elevated appearance</p>\n",
-                    "line": 21,
+                    "line": 23,
                     "rawdescription": "\nWhether the card should have an elevated appearance",
                     "modifierKind": [
                         148
@@ -562,7 +742,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>URL for the card image</p>\n",
-                    "line": 18,
+                    "line": 20,
                     "rawdescription": "\nURL for the card image",
                     "modifierKind": [
                         148
@@ -578,7 +758,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Card subtitle text</p>\n",
-                    "line": 15,
+                    "line": 17,
                     "rawdescription": "\nCard subtitle text",
                     "modifierKind": [
                         148
@@ -594,7 +774,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Card title text</p>\n",
-                    "line": 12,
+                    "line": 14,
                     "rawdescription": "\nCard title text",
                     "modifierKind": [
                         148
@@ -610,17 +790,22 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "CardModule",
+                    "type": "module"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'lib-card',\r\n  standalone: true,\r\n  templateUrl: './card.html',\r\n  styleUrl: './card.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class CardComponent {\r\n  /** Card title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Card subtitle text */\r\n  readonly subtitle = input<string>('');\r\n\r\n  /** URL for the card image */\r\n  readonly imageUrl = input<string>('');\r\n\r\n  /** Whether the card should have an elevated appearance */\r\n  readonly elevated = input<boolean>(false);\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input } from '@angular/core';\r\nimport { CardModule } from 'primeng/card';\r\n\r\n@Component({\r\n  selector: 'lib-card',\r\n  standalone: true,\r\n  imports: [CardModule],\r\n  templateUrl: './card.html',\r\n  styleUrl: './card.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class CardComponent {\r\n  /** Card title text */\r\n  readonly title = input<string>('');\r\n\r\n  /** Card subtitle text */\r\n  readonly subtitle = input<string>('');\r\n\r\n  /** URL for the card image */\r\n  readonly imageUrl = input<string>('');\r\n\r\n  /** Whether the card should have an elevated appearance */\r\n  readonly elevated = input<boolean>(false);\r\n}\r\n",
             "styleUrl": "./card.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div [class]=\"'card ' + (elevated() ? 'card-elevated' : '')\">\r\n  @if (imageUrl()) {\r\n    <img [src]=\"imageUrl()\" [alt]=\"title() || 'Card image'\" class=\"card-image\" />\r\n  }\r\n  <div class=\"card-content\">\r\n    @if (title()) {\r\n      <h3 class=\"card-title\">{{ title() }}</h3>\r\n    }\r\n    @if (subtitle()) {\r\n      <p class=\"card-subtitle\">{{ subtitle() }}</p>\r\n    }\r\n    <div class=\"card-body\">\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<p-card\r\n  [header]=\"title()\"\r\n  [subheader]=\"subtitle()\"\r\n  [class]=\"elevated() ? 'elevated-card' : ''\"\r\n>\r\n  @if (imageUrl()) {\r\n    <ng-template pTemplate=\"header\">\r\n      <img [src]=\"imageUrl()\" [alt]=\"title() || 'Card image'\" style=\"width: 100%; display: block;\" />\r\n    </ng-template>\r\n  }\r\n  <ng-content></ng-content>\r\n</p-card>\r\n"
         }
     ],
     "modules": [],
@@ -736,7 +921,7 @@
         "children": []
     },
     "coverage": {
-        "count": 31,
+        "count": 32,
         "status": "medium",
         "files": [
             {
@@ -763,8 +948,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "AlertComponent",
-                "coveragePercent": 88,
-                "coverageCount": "8/9",
+                "coveragePercent": 90,
+                "coverageCount": "10/11",
                 "status": "very-good"
             },
             {
@@ -782,8 +967,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 85,
-                "coverageCount": "6/7",
+                "coveragePercent": 88,
+                "coverageCount": "8/9",
                 "status": "very-good"
             },
             {

@@ -1,16 +1,12 @@
-<div [class]="'card ' + (elevated() ? 'card-elevated' : '')">
+<p-card
+  [header]="title()"
+  [subheader]="subtitle()"
+  [class]="elevated() ? 'elevated-card' : ''"
+>
   @if (imageUrl()) {
-    <img [src]="imageUrl()" [alt]="title() || 'Card image'" class="card-image" />
+    <ng-template pTemplate="header">
+      <img [src]="imageUrl()" [alt]="title() || 'Card image'" style="width: 100%; display: block;" />
+    </ng-template>
   }
-  <div class="card-content">
-    @if (title()) {
-      <h3 class="card-title">{{ title() }}</h3>
-    }
-    @if (subtitle()) {
-      <p class="card-subtitle">{{ subtitle() }}</p>
-    }
-    <div class="card-body">
-      <ng-content></ng-content>
-    </div>
-  </div>
-</div>
+  <ng-content></ng-content>
+</p-card>

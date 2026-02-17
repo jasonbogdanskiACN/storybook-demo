@@ -1,19 +1,33 @@
 @if (!dismissed()) {
-  <div [class]="'alert alert-' + type()">
-    <div class="alert-content">
-      <span class="alert-icon" aria-label="Alert icon">{{ icon() }}</span>
-      <div class="alert-text">
-        @if (title()) {
-          <h4 class="alert-title">{{ title() }}</h4>
-        }
-        <p class="alert-message">{{ message() }}</p>
-        <ng-content></ng-content>
-      </div>
-    </div>
-    @if (dismissible()) {
-      <button class="alert-dismiss" (click)="dismiss()" aria-label="Dismiss alert">
-        ×
-      </button>
-    }
+  <div style="position: relative;">
+    <p-message
+      [severity]="severity()"
+    >
+      <ng-template pTemplate="headless">
+        <div class="p-message-wrapper" style="padding: 1rem; display: flex; align-items: start; gap: 0.75rem;">
+          <i [class]="'pi ' + (severity() === 'success' ? 'pi-check-circle' : severity() === 'info' ? 'pi-info-circle' : severity() === 'warn' ? 'pi-exclamation-triangle' : 'pi-times-circle')" style="font-size: 1.25rem;"></i>
+          <div style="flex: 1;">
+            @if (title()) {
+              <h4 style="margin: 0 0 0.5rem 0; font-weight: 600;">{{ title() }}</h4>
+            }
+            @if (message()) {
+              <p style="margin: 0;">{{ message() }}</p>
+            }
+            <ng-content></ng-content>
+          </div>
+          @if (dismissible()) {
+            <button
+              type="button"
+              class="p-message-close-button"
+              (click)="dismiss()"
+              aria-label="Dismiss alert"
+              style="background: transparent; border: none; cursor: pointer; padding: 0.25rem; display: flex; align-items: center; justify-content: center;"
+            >
+              <i class="pi pi-times" style="font-size: 1rem;"></i>
+            </button>
+          }
+        </div>
+      </ng-template>
+    </p-message>
   </div>
 }
