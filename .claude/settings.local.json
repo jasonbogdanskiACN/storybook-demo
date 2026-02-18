@@ -4,8 +4,11 @@
       "Bash(dir:*)",
       "Bash(npx storybook@latest init:*)",
       "Bash(npx ng generate:*)",
-      "Bash(npm run storybook:*)",
-      "Skill(playwright-cli)"
+      "Bash(pnpm run storybook:*)",
+      "Skill(playwright-cli)",
+      "Bash(corepack enable:*)",
+      "Bash(corepack prepare:*)",
+      "Bash(pnpm install:*)"
     ]
   }
 }

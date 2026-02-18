@@ -11,8 +11,8 @@
     "start:demo": "nx serve demo-app",
     "build:demo": "nx build demo-app",
     "test:demo": "nx test demo-app",
-    "dev": "npm run storybook",
-    "dev:demo": "npm run start:demo",
+    "dev": "pnpm run storybook",
+    "dev:demo": "pnpm run start:demo",
     "playwright": "playwright-cli",
     "playwright:help": "playwright-cli --help",
     "playwright:open": "playwright-cli open",
@@ -41,7 +41,18 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@11.6.2",
+  "packageManager": "pnpm@10.30.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@compodoc/compodoc",
+      "@parcel/watcher",
+      "esbuild",
+      "less",
+      "lmdb",
+      "msgpackr-extract",
+      "nx"
+    ]
+  },
   "overrides": {
     "ajv": "^8.18.0"
   },

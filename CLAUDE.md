@@ -45,7 +45,7 @@ Interactive documentation for shared components located at `.storybook/`. Provid
 Use Storybook for isolated component development and documentation:
 
 ```bash
-npm run storybook
+pnpm run storybook
 # Opens Storybook at http://localhost:6006
 # Shows all shared components with interactive controls
 # Auto-reloads when you edit component files
@@ -61,7 +61,7 @@ npm run storybook
 Use the demo app to test components in context:
 
 ```bash
-npm run start:demo
+pnpm run start:demo
 # Serves demo app at http://localhost:4200
 # Hot-reloads when components or app code changes
 ```
@@ -75,7 +75,7 @@ npm run start:demo
 
 ```bash
 # Build demo app
-npm run build:demo
+pnpm run build:demo
 # Output: dist/demo-app/
 ```
 
@@ -83,10 +83,10 @@ npm run build:demo
 
 ```bash
 # Test demo app
-npm run test:demo
+pnpm run test:demo
 
 # Test everything
-npm run test:all
+pnpm run test:all
 ```
 
 ## Importing Library Components
@@ -619,7 +619,7 @@ Following these practices ensures:
 
 - For navigating/exploring the workspace, invoke the `nx-workspace` skill first - it has patterns for querying projects, targets, and dependencies
 - When running tasks (for example build, lint, test, e2e, etc.), always prefer running the task through `nx` (i.e. `nx run`, `nx run-many`, `nx affected`) instead of using the underlying tooling directly
-- Prefix nx commands with the workspace's package manager (e.g., `pnpm nx build`, `npm exec nx test`) - avoids using globally installed CLI
+- Prefix nx commands with the workspace's package manager (e.g., `pnpm nx build`, `pnpm exec nx test`) - avoids using globally installed CLI
 - You have access to the Nx MCP server and its tools, use them to help the user
 - For Nx plugin best practices, check `node_modules/@nx/<plugin>/PLUGIN.md`. Not all plugins have this file - proceed without it if unavailable.
 - NEVER guess CLI flags - always check nx_docs or `--help` first when unsure
