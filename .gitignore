@@ -46,3 +46,8 @@ Thumbs.db
 *storybook.log
 storybook-static
 playwright-cli/
+
+
+
+.nx/cache
+.nx/workspace-data
