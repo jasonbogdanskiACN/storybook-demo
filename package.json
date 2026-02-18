@@ -72,6 +72,8 @@
     "@angular/platform-browser-dynamic": "^21.1.0",
     "@compodoc/compodoc": "^1.2.1",
     "@nx/angular": "22.5.1",
+    "@nx/storybook": "^22.5.1",
+    "@nx/web": "22.5.1",
     "@nx/workspace": "22.5.1",
     "@playwright/cli": "^0.1.1",
     "@schematics/angular": "^21.1.4",
